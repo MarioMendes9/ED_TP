@@ -5,6 +5,14 @@
  */
 package ed_tp;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author mario
@@ -14,8 +22,11 @@ public class ED_TP {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
+        String file = "socialgraph2.json";
+        User[] users = new User[20];
+        UserInformation info = new UserInformation(file, users);
+        info.loadInfo();
+        info.saveInfo();
     }
-    
 }
