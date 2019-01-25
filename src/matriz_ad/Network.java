@@ -156,6 +156,20 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     public double shortestPathWeight(T vertex1, T vertex2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public double getPathWeight(UnorderedListADT<Integer> list){
+        double sum=0;
+        int var1=list.removeFirst();
+        int var2=list.removeFirst();
+        sum+=adjMatrix[var1][var2];
+        for(Integer i:list){
+            var1=var2;
+            var2=list.removeFirst();
+            sum+=adjMatrix[var1][var2];
+        }
+        return sum;
+        
+    }
 
     @Override
     protected void expandCapacity() {
