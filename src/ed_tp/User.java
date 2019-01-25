@@ -35,6 +35,7 @@ public class User {
      * @param idade
      * @param nome
      * @param email
+     * @param visualizacoes
      */
     public User(int id, int idade, String nome, String email, int visualizacoes) {
         this.id = id;
@@ -81,6 +82,10 @@ public class User {
         }
     } 
     
+    /**
+     *
+     * @param c
+     */
     public void addMencao(int c){
         if(mencoes[mencoes.length-1]!=0){
             expandSkillsCapacity();
@@ -249,6 +254,10 @@ public class User {
         this.visualizacoes++;
     }
 
+    /**
+     *
+     * @param visualizacoes
+     */
     public void setVisualizacoes(int visualizacoes) {
         this.visualizacoes = visualizacoes;
     }
@@ -324,6 +333,10 @@ public class User {
         formacao=array;
    }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         String s="{";

@@ -132,13 +132,13 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     }
 
     @Override
-    public Iterator<T> iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath{
-        
-            return iteratorShortestPath(getIndex(startVertex),
-                    getIndex(targetVertex));  
+    public Iterator<T> iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath {
+
+        return iteratorShortestPath(getIndex(startVertex),
+                getIndex(targetVertex));
     }
 
-    public Iterator iteratorShortestPath(int startIndex, int targetIndex) throws NonAvailablePath{
+    public Iterator iteratorShortestPath(int startIndex, int targetIndex) throws NonAvailablePath {
         Integer x = 0;
         ArrayUnorderedList<T> resultShortList = new ArrayUnorderedList<T>();
         //Inicializa o vetor de visitados
@@ -171,7 +171,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
         while (flag != numVertices) {
             double costTemp = Double.MAX_VALUE;
-            for (int i = 0; i < cost.length ; i++) {
+            for (int i = 0; i < cost.length; i++) {
                 if (costTemp > cost[i] && visited[i] != true) {
                     x = i;
                     costTemp = cost[i];
@@ -193,39 +193,56 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             }
 
         }
-        int vertex=targetIndex;
-        
-        if(lastVertice[vertex]==-1){
-           throw new NonAvailablePath();
+        int vertex = targetIndex;
+
+        if (lastVertice[vertex] == -1) {
+            throw new NonAvailablePath();
         }
-        
-        while(vertex!=startIndex){
+
+        while (vertex != startIndex) {
             resultShortList.addToFront(this.vertices[vertex]);
-            vertex=lastVertice[vertex];
+            vertex = lastVertice[vertex];
         }
         resultShortList.addToFront(this.vertices[startIndex]);
-        
+        System.out.println("Vertice || Visited || Cost || Last");
+        for (int i = 0; i < lastVertice.length; i++) {
+            System.out.println(vertices[i] + "||" + visited[i] + "||" + cost[i] + "||" + lastVertice[i]);
+
+        }
         return resultShortList.iterator();
 
     }
 
     @Override
-    public double shortestPathWeight(T vertex1, T vertex2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double shortestPathWeight(T vertex1, T vertex2) throws NonAvailablePath {
+
+        return this.getPathWeight(this.iteratorShortestPath(vertex1, vertex2));
+
     }
-    
-    public double getPathWeight(UnorderedListADT<Integer> list){
-        double sum=0;
-        int var1=list.removeFirst();
-        int var2=list.removeFirst();
-        sum+=adjMatrix[var1][var2];
-        for(Integer i:list){
-            var1=var2;
-            var2=list.removeFirst();
-            sum+=adjMatrix[var1][var2];
+
+    public double getPathWeight(UnorderedListADT<T> list) {
+        double sum = 0;
+        T var1 = list.removeFirst();
+        T var2 = list.removeFirst();
+        sum += adjMatrix[this.getIndex(var1)][this.getIndex(var2)];
+        while(!list.isEmpty()) {
+            var1 = var2;
+            var2 = list.removeFirst();
+            sum += adjMatrix[this.getIndex(var1)][this.getIndex(var2)];
         }
         return sum;
-        
+
+    }
+
+    public double getPathWeight(Iterator i) {
+        ArrayUnorderedList<T> sum = new ArrayUnorderedList<>();
+        while (i.hasNext()) {
+            sum.addToRear((T) i.next());
+        }
+
+        System.out.println(sum.toString());
+
+        return this.getPathWeight(sum);
     }
 
     @Override

@@ -21,6 +21,9 @@ public class ED_TP {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.IOException
+     * @throws org.json.simple.parser.ParseException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
         String file = "socialgraph2.json";

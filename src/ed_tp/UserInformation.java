@@ -22,11 +22,21 @@ public class UserInformation {
     private String file;
     private User[] users;
 
+    /**
+     *
+     * @param file
+     * @param users
+     */
     public UserInformation(String file, User[] users) {
         this.file = file;
         this.users = users;
     }
 
+    /**
+     *
+     * @throws IOException
+     * @throws ParseException
+     */
     public void loadInfo() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONObject jsonobj = (JSONObject) parser.parse(new FileReader(file));
@@ -72,6 +82,10 @@ public class UserInformation {
 System.out.println("Ficheiro carregado");
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void saveInfo() throws IOException{
         JSONArray array=new JSONArray();
         int i=0;

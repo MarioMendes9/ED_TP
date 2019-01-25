@@ -19,8 +19,8 @@ public class EDFP12 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Network<String> net=new Network<>();
-        
+        Network<String> net = new Network<>();
+
         net.addVertex("A");
         net.addVertex("B");
         net.addVertex("C");
@@ -29,18 +29,18 @@ public class EDFP12 {
         net.addVertex("F");
         net.addVertex("G");
         net.addVertex("H");
-       
-       net.addEdge("A","D", 2);
-       net.addEdge("D","H", 6);
-       net.addEdge("B","A", 7);
-       net.addEdge("A","C", 6);
-       net.addEdge("C","A", 7);
-       net.addEdge("B","C", 7);
-       net.addEdge("C","B", 6);
-       net.addEdge("B","F", 6);
-       net.addEdge("G","F", 2);
-       net.addEdge("A","E", 8);
-       net.addEdge("E","H", 6);
+
+        net.addEdge("A", "B", 1);
+        net.addEdge("A", "E", 1);
+        net.addEdge("D", "B", 6);
+        net.addEdge("G", "E", 5);
+        net.addEdge("C", "G", 8);
+        net.addEdge("F", "B", 4);
+        net.addEdge("F", "G", 4);
+        net.addEdge("G", "H", 1);
+        net.addEdge("H", "G", 2);
+        net.addEdge("H", "F", 9);
+        net.addEdge("D", "H", 1);
 //        net.addEdge("A", "B", 2);
 //       // net.addEdge("B", "A", 3);
 //        //net.addEdge("A", "C", 7);
@@ -53,32 +53,30 @@ public class EDFP12 {
 //       // net.addEdge("D", "A", 4);
 //     //   net.addEdge("D", "B", 3);
 //        net.addEdge("D", "C", 2);
-        
-        
+
         //net.printmatriz();
         //System.out.println("kkkkkkkkkkkkkkkk");
-       // System.out.println(net.toString());
-       // net.removeVertex("D");
-         net.printmatriz();
+        // System.out.println(net.toString());
+        // net.removeVertex("D");
+        net.printmatriz();
         //Iterator<String> a=net.iteratorDFS("A");
 //        a.next();
         //while(a.hasNext()){
-          //  System.out.print(a.next());
-            
+        //  System.out.print(a.next());
+
         //}
-       Iterator <String> a = null;
+        Iterator<String> a = null;
         try {
-            a = net.iteratorShortestPath("A", "F");
-             while(a.hasNext()){
-            System.out.print(a.next()+"||");
-        }
+            a = net.iteratorShortestPath("D", "E");
+            while (a.hasNext()) {
+                System.out.print(a.next() + "||");
+            }
+            System.out.println("ggggggg");
+            System.out.println(net.shortestPathWeight("D", "E"));
         } catch (NonAvailablePath ex) {
             System.out.println(ex.getMessage());
         }
-       
-        
-        
-        
+
     }
-    
+
 }

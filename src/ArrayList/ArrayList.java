@@ -166,6 +166,16 @@ public class ArrayList<T> implements ListADT<T> {
     @Override
     public Iterator<T> iterator() {
         return new ArrayIterator<>(this.array, this.rear);
+    }   
+
+    @Override
+    public String toString() {
+       String s="";
+       for(int i=0;i<this.rear;i++){
+           s+=this.array[i].toString()+" ";
+       }
+       return s;
     }
+    
     
 }
