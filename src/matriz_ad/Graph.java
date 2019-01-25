@@ -257,8 +257,8 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     @Override
-    public Iterator iteratorShortestPath(T startVertex, T targetVertex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath{
+        return null;
     }
 
     

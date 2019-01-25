@@ -32,7 +32,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      *
      * @param vertex a adicionar
      */
-
     @Override
     public void addVertex(T vertex) {
         if (numVertices == vertices.length) {
@@ -112,7 +111,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      * @param index2
      * @param weight
      */
-
     public void addEdge(int index1, int index2, double weight) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = weight;
@@ -133,23 +131,93 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
     }
 
-    public Iterator<T> iteratorShortestPath(T startVertex, T targetVertex) {
-        return iteratorShortestPath(getIndex(startVertex),
-                getIndex(targetVertex));
+    @Override
+    public Iterator<T> iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath{
+        
+            return iteratorShortestPath(getIndex(startVertex),
+                    getIndex(targetVertex));  
     }
 
-    public Iterator<T> iteratorShortestPath(int startIndex, int targetIndex) {
-        ArrayUnorderedList templist = new ArrayUnorderedList();
-        if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)) {
-            return templist.iterator();
+    public Iterator iteratorShortestPath(int startIndex, int targetIndex) throws NonAvailablePath{
+        Integer x = 0;
+        ArrayUnorderedList<T> resultShortList = new ArrayUnorderedList<T>();
+        //Inicializa o vetor de visitados
+        Boolean[] visited = new Boolean[this.numVertices];
+        for (int i = 0; i < visited.length; i++) {
+            visited[i] = false;
+
+        }
+        double[] cost = new double[this.numVertices];
+        //Inicia o vetor de custo 
+        for (int i = 0; i < cost.length; i++) {
+            cost[i] = Double.MAX_VALUE;
+
+        }
+        //Inicializa o vetor do ultimo vertice
+        int lastVertice[] = new int[this.numVertices];
+
+        for (int i = 0; i < lastVertice.length; i++) {
+            lastVertice[i] = -1;
+
         }
 
-//        Iterator<Integer> it = iteratorShortestPathIndices(startIndex,
-//                targetIndex);
-//        while (it.hasNext()) {
-//            templist.addToRear(vertices[(it.next()).intValue()]);
+        if (!indexIsValid(startIndex)) {
+            return resultShortList.iterator();
+        }
+
+        //visited[startIndex] = true;
+        cost[startIndex] = 0;
+        int flag = 0;
+
+        while (flag != numVertices) {
+            double costTemp = Double.MAX_VALUE;
+            for (int i = 0; i < cost.length ; i++) {
+                if (costTemp > cost[i] && visited[i] != true) {
+                    x = i;
+                    costTemp = cost[i];
+
+                }
+            }
+            flag++;
+            visited[x] = true;
+
+            for (int i = 0; i < numVertices; i++) {
+                if ((adjMatrix[x.intValue()][i] > 0) && !visited[i]) {
+                    if (cost[i] > costTemp + adjMatrix[x.intValue()][i]) {
+                        lastVertice[i] = x;
+                        cost[i] = costTemp + adjMatrix[x.intValue()][i];
+                    }
+
+                }
+
+            }
+
+        }
+        int vertex=targetIndex;
+        
+        if(lastVertice[vertex]==-1){
+           throw new NonAvailablePath();
+        }
+        
+        while(vertex!=startIndex){
+            resultShortList.addToFront(this.vertices[vertex]);
+            vertex=lastVertice[vertex];
+        }
+        resultShortList.addToFront(this.vertices[startIndex]);
+        
+        return resultShortList.iterator();
+//        System.out.println("PRINT SHIT");
+//        System.out.println("Vertex || Visited || Cost || Path");
+//
+//        for (int i = 0; i < numVertices; i++) {
+//            System.out.println(this.vertices[i] + "||" + visited[i] + "||" + cost[i] + "||" + lastVertice[i]);
+//
 //        }
-        return templist.iterator();
+
+        
+
+       
+
     }
 
     @Override
@@ -189,6 +257,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
                 adjMatrix2[i][j] = adjMatrix[i][j];
             }
         }
+        this.adjMatrix = adjMatrix2;
 
     }
 
@@ -196,8 +265,8 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     public Iterator<T> iteratorDFS(int startIndex) {
         Integer x = null;
         boolean found;
-        LinkedStack<Integer> traversalStack = new LinkedStack<Integer>();
-        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<T>();
+        LinkedStack<Integer> traversalStack = new LinkedStack<>();
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
         boolean[] visited = new boolean[numVertices];
 
         if (!indexIsValid(startIndex)) {
@@ -247,8 +316,8 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     @Override
     public Iterator<T> iteratorBFS(int startIndex) {
         Integer x = null;
-        LinkedQueue<Integer> traversalQueue = new LinkedQueue<Integer>();
-        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<T>();
+        LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
 
         if (!indexIsValid(startIndex)) {
             return resultList.iterator();
@@ -284,7 +353,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
         return resultList.iterator();
     }
-
 
     @Override
     public void printmatriz() {

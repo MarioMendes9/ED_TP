@@ -73,7 +73,7 @@ public interface GraphADT<T> {
      * @return an iterator that contains the shortest path between the two
      * vertices
      */
-    public Iterator iteratorShortestPath(T startVertex, T targetVertex);
+    public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath;
 
     /**
      * Returns true if this graph is empty, false otherwise.
