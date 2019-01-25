@@ -206,17 +206,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         resultShortList.addToFront(this.vertices[startIndex]);
         
         return resultShortList.iterator();
-//        System.out.println("PRINT SHIT");
-//        System.out.println("Vertex || Visited || Cost || Path");
-//
-//        for (int i = 0; i < numVertices; i++) {
-//            System.out.println(this.vertices[i] + "||" + visited[i] + "||" + cost[i] + "||" + lastVertice[i]);
-//
-//        }
-
-        
-
-       
 
     }
 
