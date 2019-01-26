@@ -1,8 +1,7 @@
-
 package matriz_ad;
 
 /**
- *~Execeçao para o caso de nao existir um caminho entre dois elementos
+ * Execeçao para o caso de nao existir um caminho entre dois elementos
  * 
  */
 public class NonAvailablePath extends Exception{

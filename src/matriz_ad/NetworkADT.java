@@ -3,6 +3,7 @@ package matriz_ad;
 /**
  * NetworkADT defines the interface to a network.
  *
+ * @param <T> tipos genericos de dados
  */
 public interface NetworkADT<T> extends GraphADT<T> {
 
@@ -21,6 +22,7 @@ public interface NetworkADT<T> extends GraphADT<T> {
      * @param vertex1 the first vertex
      * @param vertex2 the second vertex
      * @return the weight of the shortest path in this network
+     * @throws matriz_ad.NonAvailablePath se nao existir um caminho entre eles
      */
     public double shortestPathWeight(T vertex1, T vertex2) throws NonAvailablePath;
 }

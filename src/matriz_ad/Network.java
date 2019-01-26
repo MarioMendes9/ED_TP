@@ -1,17 +1,17 @@
 package matriz_ad;
 
-import Heap.Heap;
 import LinkedStack.*;
 import LinkedQueue.*;
 import ArrayList.*;
+import Heap.EmptyCollectionException;
+import Heap.Heap;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
+ * Implementaçao de uma network
  *
- * @author mario
- * @param <T>
+ * @param <T> tipo generico de dados
  */
 public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
@@ -225,7 +225,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         T var1 = list.removeFirst();
         T var2 = list.removeFirst();
         sum += adjMatrix[this.getIndex(var1)][this.getIndex(var2)];
-        while(!list.isEmpty()) {
+        while (!list.isEmpty()) {
             var1 = var2;
             var2 = list.removeFirst();
             sum += adjMatrix[this.getIndex(var1)][this.getIndex(var2)];
@@ -371,77 +371,101 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     }
 
-//    public Network mstNetwork() {
-//        int x, y;
-//        int index;
-//        double weight;
-//        int[] edge = new int[2];
-//        Heap<Double> minHeap = new Heap<>();
-//        Network<T> resultGraph = new Network<>();
-//        if (isEmpty() || !isConnected()) {
-//            return resultGraph;
-//        }
-//        resultGraph.adjMatrix = new double[numVertices][numVertices];
-//        for (int i = 0; i < numVertices; i++) {
-//            for (int j = 0; j < numVertices; j++) {
-//                resultGraph.adjMatrix[i][j] = Double.POSITIVE_INFINITY;
-//            }
-//        }
-//        resultGraph.vertices = (T[]) (new Object[numVertices]);
-//
-//        boolean[] visited = new boolean[numVertices];
-//        for (int i = 0; i < numVertices; i++) {
-//            visited[i] = false;
-//        }
-//
-//        edge[0] = 0;
-//        resultGraph.vertices[0] = this.vertices[0];
-//        resultGraph.numVertices++;
-//        visited[0] = true;
-//        /**
-//         * Add all edges, which are adjacent to the starting vertex, to the heap
-//         */
-//        for (int i = 0; i < numVertices; i++) {
-//            minHeap.addElement(new Double(adjMatrix[0][i]));
-//        }
-//        while ((resultGraph.size() < this.size()) && !minHeap.isEmpty()) {
-//            /**
-//             * Get the edge with the smallest weight that has exactly one vertex
-//             * already in the resultGraph
-//             */
-//            do {
-//                weight = (minHeap.removeMin()).doubleValue();
-//                edge = getEdgeWithWeightOf(weight, visited);
-//            } while (!indexIsValid(edge[0]) || !indexIsValid(edge[1]));
-//
-//            x = edge[0];
-//            y = edge[1];
-//            if (!visited[x]) {
-//                index = x;
-//            } else {
-//                index = y;
-//            }
-//            /**
-//             * Add the new edge and vertex to the resultGraph
-//             */
-//            resultGraph.vertices[index] = this.vertices[index];
-//            visited[index] = true;
-//            resultGraph.numVertices++;
-//            resultGraph.adjMatrix[x][y] = this.adjMatrix[x][y];
-//            resultGraph.adjMatrix[y][x] = this.adjMatrix[y][x];
-//            /**
-//             * Add all edges, that are adjacent to the newly added vertex, to
-//             * the heap
-//             */
-//            for (int i = 0; i < numVertices; i++) {
-//                if (!visited[i] && (this.adjMatrix[i][index]
-//                        < Double.POSITIVE_INFINITY)) {
-//                    edge[0] = index;
-//                    edge[1] = I;
-//                    minHeap.addElement(new Double(adjMatrix[index][i]));
-//                }
-//            }
-//        }
-//        return resultGraph;
-//    }
+    public Network mstNetwork() {
+        int x, y;
+        int index;
+        double weight = 0;
+        int[] edge = new int[2];
+        Heap<Double> minHeap = new Heap<>();
+        Network<T> resultGraph = new Network<>();
+        if (isEmpty() || !isConnected()) {
+            return resultGraph;
+        }
+        resultGraph.adjMatrix = new double[numVertices][numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                resultGraph.adjMatrix[i][j] = Double.POSITIVE_INFINITY;
+            }
+        }
+        resultGraph.vertices = (T[]) (new Object[numVertices]);
+
+        boolean[] visited = new boolean[numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            visited[i] = false;
+        }
+
+        edge[0] = 0;
+        resultGraph.vertices[0] = this.vertices[0];
+        resultGraph.numVertices++;
+        visited[0] = true;
+        /**
+         * Add all edges, which are adjacent to the starting vertex, to the heap
+         */
+        for (int i = 0; i < numVertices; i++) {
+            minHeap.addElement(new Double(adjMatrix[0][i]));
+        }
+        while ((resultGraph.size() < this.size()) && !minHeap.isEmpty()) {
+            /**
+             * Get the edge with the smallest weight that has exactly one vertex
+             * already in the resultGraph
+             */
+            do {
+                try {
+                    weight = (minHeap.removeMin()).doubleValue();
+                } catch (EmptyCollectionException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                edge = getEdgeWithWeightOf(weight, visited);
+            } while (!indexIsValid(edge[0]) || !indexIsValid(edge[1]));
+
+            x = edge[0];
+            y = edge[1];
+            if (!visited[x]) {
+                index = x;
+            } else {
+                index = y;
+            }
+            /**
+             * Add the new edge and vertex to the resultGraph
+             */
+            resultGraph.vertices[index] = this.vertices[index];
+            visited[index] = true;
+            resultGraph.numVertices++;
+            resultGraph.adjMatrix[x][y] = this.adjMatrix[x][y];
+            resultGraph.adjMatrix[y][x] = this.adjMatrix[y][x];
+            /**
+             * Add all edges, that are adjacent to the newly added vertex, to
+             * the heap
+             */
+            for (int i = 0; i < numVertices; i++) {
+                if (!visited[i] && (this.adjMatrix[i][index]
+                        < Double.POSITIVE_INFINITY)) {
+                    edge[0] = index;
+                    edge[1] = i;
+                    minHeap.addElement(new Double(adjMatrix[index][i]));
+                }
+            }
+        }
+        return resultGraph;
+    }
+
+    protected int[] getEdgeWithWeightOf(double weight, boolean[] visited) {
+        int[] edge = new int[2];
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                if ((adjMatrix[i][j] == weight) && (visited[i] ^ visited[j])) {
+                    edge[0] = i;
+                    edge[1] = j;
+                    return edge;
+                }
+            }
+        }
+
+        /**
+         * Will only get to here if a valid edge is not found
+         */
+        edge[0] = -1;
+        edge[1] = -1;
+        return edge;
+    }
 }

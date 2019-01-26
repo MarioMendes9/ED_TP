@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package matriz_ad;
 
 import LinkedStack.LinkedStack;
@@ -10,13 +5,7 @@ import LinkedQueue.LinkedQueue;
 import ArrayList.ArrayUnorderedList;
 import LinkedQueue.EmptyQueueException;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author User
- */
 /**
  * Graph represents an adjacency matrix implementation of a graph.
  *
@@ -212,8 +201,8 @@ public class Graph<T> implements GraphADT<T> {
     public Iterator<T> iteratorDFS(int startIndex) {
         Integer x = null;
         boolean found;
-        LinkedStack<Integer> traversalStack = new LinkedStack<Integer>();
-        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<T>();
+        LinkedStack<Integer> traversalStack = new LinkedStack<>();
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
         boolean[] visited = new boolean[numVertices];
         if (!indexIsValid(startIndex)) {
             return resultList.iterator();
