@@ -247,6 +247,10 @@ public class Graph<T> implements GraphADT<T> {
 
     @Override
     public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath{
+        return iteratorShortestPath(getIndex(startVertex), getIndex(targetVertex));
+    }
+    
+    public Iterator iteratorShortestPath(int startVertex, int targetVertex) throws NonAvailablePath{
         return null;
     }
 
@@ -312,4 +316,18 @@ public class Graph<T> implements GraphADT<T> {
 
     }
 
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    public T[] getVertices() {
+        return vertices;
+    }
+
+   
+    
+    
+    
+
+    
 }

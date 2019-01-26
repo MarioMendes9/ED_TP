@@ -79,82 +79,78 @@ public class UserInformation {
 //                System.out.println(obj.toString());
 //            }
 //        }
-System.out.println("Ficheiro carregado");
+        System.out.println("Ficheiro carregado");
     }
-    
+
     /**
      *
      * @throws IOException
      */
-    public void saveInfo() throws IOException{
-        JSONArray array=new JSONArray();
-        int i=0;
-        while(users[i]!=null){
-        JSONObject obj=new JSONObject();        
-        JSONArray arrayfor=new JSONArray();
-        for(FormacaoAcademica f:users[i].getFormacao()){
-            if(f!=null){
-                JSONObject o=new JSONObject();
-                o.put("ano",f.getAno());
-                o.put("formacao",f.getFormacao());
-                arrayfor.add(o);
-            }            
-        }       
-        JSONArray arraycar=new JSONArray();
-        for(CargosProfissionais c:users[i].getCargos()){
-            if(c!=null){
-                JSONObject o=new JSONObject();
-                o.put("ano",c.getAno());
-                o.put("cargo",c.getCargo());
-                o.put("empresa",c.getEmpresa());
-                arraycar.add(o);
-            }            
-        }       
-        JSONArray arraysk=new JSONArray();
-        for(String s:users[i].getSkills()){
-            if(s!=null){
-                arraysk.add(s);
+    public void saveInfo() throws IOException {
+        JSONArray array = new JSONArray();
+        int i = 0;
+        while (users[i] != null) {
+            JSONObject obj = new JSONObject();
+            JSONArray arrayfor = new JSONArray();
+            for (FormacaoAcademica f : users[i].getFormacao()) {
+                if (f != null) {
+                    JSONObject o = new JSONObject();
+                    o.put("ano", f.getAno());
+                    o.put("formacao", f.getFormacao());
+                    arrayfor.add(o);
+                }
             }
-        }        
-        JSONArray arraycont=new JSONArray();
-        for(int in:users[i].getContacts()){
-            if(in!=0){
-                JSONObject o=new JSONObject();
-                o.put("userid",in);             
-                arraycont.add(o);
-            }            
-        }       
-        JSONArray arraymen=new JSONArray();
-        for(int in:users[i].getMencoes()){
-            if(in!=0){
-                JSONObject o=new JSONObject();
-                o.put("userid",in);             
-                arraymen.add(o);
-            }            
+            JSONArray arraycar = new JSONArray();
+            for (CargosProfissionais c : users[i].getCargos()) {
+                if (c != null) {
+                    JSONObject o = new JSONObject();
+                    o.put("ano", c.getAno());
+                    o.put("cargo", c.getCargo());
+                    o.put("empresa", c.getEmpresa());
+                    arraycar.add(o);
+                }
+            }
+            JSONArray arraysk = new JSONArray();
+            for (String s : users[i].getSkills()) {
+                if (s != null) {
+                    arraysk.add(s);
+                }
+            }
+            JSONArray arraycont = new JSONArray();
+            for (int in : users[i].getContacts()) {
+                if (in != 0) {
+                    JSONObject o = new JSONObject();
+                    o.put("userid", in);
+                    arraycont.add(o);
+                }
+            }
+            JSONArray arraymen = new JSONArray();
+            for (int in : users[i].getMencoes()) {
+                if (in != 0) {
+                    JSONObject o = new JSONObject();
+                    o.put("userid", in);
+                    arraymen.add(o);
+                }
+            }
+            obj.put("id", users[i].getId());
+            obj.put("nome", users[i].getNome());
+            obj.put("idade", users[i].getIdade());
+            obj.put("email", users[i].getEmail());
+            obj.put("formacaoAcademica", arrayfor);
+            obj.put("cargosProfissionais", arraycar);
+            obj.put("skills", arraysk);
+            obj.put("contacts", arraycont);
+            obj.put("mencoes", arraymen);
+            obj.put("visualizacoes", users[i].getVisualizacoes());
+            array.add(obj);
+            i++;
         }
-        obj.put("id",users[i].getId());
-        obj.put("nome",users[i].getNome());
-        obj.put("idade",users[i].getIdade());
-        obj.put("email",users[i].getEmail());
-        obj.put("formacaoAcademica",arrayfor);
-        obj.put("cargosProfissionais",arraycar);
-        obj.put("skills", arraysk);
-        obj.put("contacts",arraycont);
-        obj.put("mencoes",arraymen);
-        obj.put("visualizacoes",users[i].getVisualizacoes());        
-        array.add(obj);
-        i++;       
-    }
-        JSONObject obje=new JSONObject();
+        JSONObject obje = new JSONObject();
         obje.put("grafoSocial", array);
         FileWriter ficheiro = new FileWriter("socialgraph2.json");
-            ficheiro.write(obje.toJSONString());
-            ficheiro.close();
+        ficheiro.write(obje.toJSONString());
+        ficheiro.close();
         System.out.println("ficheiro guardado");
-        
-      
-        
-        
-        
+
     }
 }

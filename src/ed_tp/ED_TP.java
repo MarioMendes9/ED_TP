@@ -8,6 +8,7 @@ package ed_tp;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import matriz_ad.Network;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -31,5 +32,9 @@ public class ED_TP {
         UserInformation info = new UserInformation(file, users);
         info.loadInfo();
         info.saveInfo();
+        
+        Network n=new Network();
+        
+        
     }
 }

@@ -368,6 +368,14 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             }
             System.out.println("");
         }
+        
+        System.out.println("USER");
+        
+        for (int i = 0; i < this.numVertices; i++) {
+           
+            System.out.println(vertices[i].toString());
+            
+        }
 
     }
 
@@ -468,4 +476,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         edge[1] = -1;
         return edge;
     }
+
+    
+    public double[][] getAdjMatrix() {
+        return adjMatrix;
+    }
+    
+    
 }
