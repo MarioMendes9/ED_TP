@@ -48,9 +48,8 @@ public class SocialGraph {
         Object[] users = socialGraph.getVertices();
 
         int i = 0;
-        while (i < socialGraph.getNumVertices()) {
+        while (i < socialGraph.size()) {
             if (((User) users[i]).getEmail().equals(email)) {
-               // ((User) users[i]).setVisualizacoes(((User) users[i]).getVisualizacoes() + 1);
                 return ((User) users[i]);
             }
             i++;
@@ -61,14 +60,32 @@ public class SocialGraph {
     }
 
     public boolean completo() {
-        double[][] adjxma = socialGraph.getAdjMatrix();
+        if (!socialGraph.isConnected()) {
+            return false;
 
-        for (int i = 0; i < socialGraph.getNumVertices(); i++) {
-            for (int j = 0; j < socialGraph.getNumVertices(); j++) {
-                if (i != j && adjxma[i][j] == 0.0) {
-                    return false;
+        }
+
+        for (int i = 0; i < socialGraph.size(); i++) {
+            for (int j = 0; j < socialGraph.size(); j++) {
+                if (i != j) {
+                    try {
+                        Iterator it = socialGraph.iteratorShortestPathEdges(i, j);
+                        int n = 0;
+                        while (it.hasNext()) {
+                            System.out.println(it.next());
+                            n++;
+                            
+                        }
+
+                        if (n != 2) {
+                            System.out.println("passou aqui");
+                            return false;
+                        }
+                    } catch (NonAvailablePath ex) {
+                        return false;
+                    }
+
                 }
-
             }
 
         }
@@ -101,7 +118,7 @@ public class SocialGraph {
         Object[] users = socialGraph.getVertices();
         ArrayUnorderedList<User> fastFriends = new ArrayUnorderedList<>();
 
-        for (int i = 0; i < socialGraph.getNumVertices(); i++) {
+        for (int i = 0; i < socialGraph.size(); i++) {
             Iterator<User> it;
             try {
                 it = socialGraph.iteratorShortestPath(user, ((User) users[i]));
