@@ -376,7 +376,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             System.out.println(vertices[i].toString());
             
         }
-
+        
     }
 
     public Network mstNetwork() {

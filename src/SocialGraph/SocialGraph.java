@@ -33,13 +33,13 @@ public class SocialGraph {
 
     }
 
-    public void removeUser(User remove) {
-        this.socialGraph.removeVertex(remove);
+    public void removeUser(String email) throws ElementNotFoundException {
+        this.socialGraph.removeVertex(searchUser(email));
     }
 
-    public void addUserFriend(User first, User second) {
-        this.socialGraph.addEdge(first, second, (1.0 / first.getVisualizacoes()));
-        this.socialGraph.addEdge(second, first, (1.0 / second.getVisualizacoes()));
+    public void addUserFriend(String first, String second) throws ElementNotFoundException {
+        this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(first).getVisualizacoes()));
+        this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(second).getVisualizacoes()));
 
     }
 
@@ -50,7 +50,7 @@ public class SocialGraph {
         int i = 0;
         while (i < socialGraph.getNumVertices()) {
             if (((User) users[i]).getEmail().equals(email)) {
-                ((User) users[i]).setVisualizacoes(((User) users[i]).getVisualizacoes() + 1);
+               // ((User) users[i]).setVisualizacoes(((User) users[i]).getVisualizacoes() + 1);
                 return ((User) users[i]);
             }
             i++;
