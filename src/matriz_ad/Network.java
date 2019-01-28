@@ -204,11 +204,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             vertex = lastVertice[vertex];
         }
         resultShortList.addToFront(this.vertices[startIndex]);
-        System.out.println("Vertice || Visited || Cost || Last");
-        for (int i = 0; i < lastVertice.length; i++) {
-            System.out.println(vertices[i] + "||" + visited[i] + "||" + cost[i] + "||" + lastVertice[i]);
-
-        }
+//        System.out.println("Vertice || Visited || Cost || Last");
+//        for (int i = 0; i < lastVertice.length; i++) {
+//            System.out.println(vertices[i] + "||" + visited[i] + "||" + cost[i] + "||" + lastVertice[i]);
+//
+//        }
         return resultShortList.iterator();
 
     }

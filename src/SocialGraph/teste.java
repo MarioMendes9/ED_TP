@@ -31,7 +31,7 @@ public class teste {
         User user4 = new User(4, 10, "leite", "leite@mmm.mmn", 5);
         User user5 = new User(5, 10, "lei", "lei@mmm.mmm", 6);
         user1.addSkill("java");
-       //user2.addSkill("java");
+        user2.addSkill("java");
         user3.addSkill("java");
         user4.addSkill("java");
         user5.addSkill("java");
@@ -44,61 +44,24 @@ public class teste {
         social.addUser(user3);
         social.addUser(user4);
         social.addUser(user5);
-        social.addUser(user6);
-        social.addUser(user7);
-         social.addUser(user8);
-        //user6.addCargo(1999, "rei", "Estg");
-        user5.addSkill("Netbeans");
-       // user3.addSkill("Netbeans");
-        user3.addSkill("Java");
-        user7.addSkill("Netbeans");
-        user5.addCargo(1998, "roubo", "Estg");
-        user8.addCargo(1555, "mano", "Estg");
+//        social.addUser(user6);
+//        social.addUser(user7);
+//        social.addUser(user8);
+        
 
         try {
             social.addUserFriend("jorge@mmm.mmm", "mendes@mmm.mmm");
+            social.addUserFriend("mario@mm.mmm", "leite@mmm.mmn");
              social.addUserFriend("jorge@mmm.mmm", "lei@mmm.mmm");
-            social.addUserFriend("mendes@m.msd", "lee@l.lsd");
-            social.addUserFriend("mario@m.msd", "lee@l.lsd");
-            social.addUserFriend("mendes@m.msd", "sete@l.lsd");
-            social.addUserFriend("mendes@mmm.mmm", "lei@mmm.mmm");
-            ArrayUnorderedList<User> a = social.fastFriendsEmpresa("mario@m.msd", "Netbeans");
-            ArrayUnorderedList<User> b = social.fastFriendsEmpresa("mario@m.msd", "Estg");
-            System.out.println(a.size());
-            System.out.println(b.size());
+            social.addUserFriend("mendes@mmm.mmm", "lei@mmm.mmm");         
+            social.addUserFriend("mario@mm.mmm", "jorge@mmm.mmm");           
+           
            Iterator<User> it= social.usersWithSkill("java", user1).iterator();
             System.out.println("IMPRIMIR");
            while(it.hasNext()){
                User aa=it.next();
                System.out.println(aa.getNome());
-           }
-            Iterator<User> xd = social.canMeet("mario@m.msd").iterator();
-            while (xd.hasNext()) {
-                System.out.println(xd.next().getEmail());
-            }
-            System.out.println("cantasdasdasdasASDASDASDASDASDASD");
-            Iterator<User> xdd = social.cantMeet("mario@m.msd").iterator();
-            while (xdd.hasNext()) {
-                System.out.println(xdd.next().getEmail());
-            }
-           
-            
-            Iterator<User> dd=social.workOn("mario@m.msd", "Estg").iterator();
-            
-            while(dd.hasNext()){
-                System.out.println(dd.next());
-            }
-            ArrayUnorderedList<String> skills=new ArrayUnorderedList<>();
-            skills.addToFront("Java");
-            skills.addToFront("Netbeans");
-            skills.addToFront("C++");
-            
-            Iterator<User> ddd=social.fastFriendsSkills("jorge@j.jsd", skills).iterator();
-            System.out.println("\n\n\n\n\n\n\n\n");
-            while(ddd.hasNext()){
-                System.out.println(ddd.next());
-                      
-            }
+           }          
         } catch (ElementNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch (EmptyCollectionException ex) {

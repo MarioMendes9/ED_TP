@@ -6,9 +6,10 @@ import Heap.LinkedUnorderedList;
 import Heap.UnorderedListADT;
 import ArrayList.*;
 import ed_tp.CargosProfissionais;
-import matriz_ad.Network;
 import ed_tp.User;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import matriz_ad.NonAvailablePath;
 import matriz_ad.SuperNetwork;
 
@@ -168,10 +169,9 @@ public class SocialGraph {
 
             }
         }
-        
-            return fastfriends;
+
+        return fastfriends;
     }
-    
 
     /**
      *
@@ -181,7 +181,7 @@ public class SocialGraph {
      * @throws ElementNotFoundException
      */
     public ArrayUnorderedList<User> fastFriendsSkills(String userMail, ListADT<String> skills) throws ElementNotFoundException {
-        
+
         User user = searchUser(userMail);
         Object[] users = socialGraph.getVertices();
         ArrayUnorderedList<User> connects = new ArrayUnorderedList<>();
@@ -211,12 +211,12 @@ public class SocialGraph {
         while (iterat.hasNext()) {
             User filterUser = iterat.next();
             Iterator<String> filterSkill = filterUser.getSkills().iterator();
-            boolean add=false;
+            boolean add = false;
             while (filterSkill.hasNext() && !add) {
                 String s = filterSkill.next();
                 if (skills.contains(s)) {
                     fastfriends.addToRear(filterUser);
-                    add=true;
+                    add = true;
                 }
             }
         }
@@ -251,48 +251,39 @@ public class SocialGraph {
     }
 
     public LinkedUnorderedList<User> usersWithSkill(String skill, User u) throws EmptyCollectionException {
-      LinkedUnorderedList<User> list=new LinkedUnorderedList<>();
-      LinkedUnorderedList<User> finallist=new LinkedUnorderedList<>();
-     
-      Object[] users=this.socialGraph.getVertices();
-      for(int j=0;j<users.length;j++){
-          Iterator<String> i=((User)users[j]).getSkills().iterator();
-          while(i.hasNext()){
-              String s=i.next();
-              if(s.equals(skill)){
-                  list.addToRear((User)(users[j]));
-              }
-          }     
-      }
-      Iterator<User> i=list.iterator();
-      while(i.hasNext()){
-          User a = null;
-          User us=i.next();
-          try {
-              double d=socialGraph.shortestPathWeight(u,us);
-              if(finallist.isEmpty()){
-                  finallist.addToFront(us);
-              }else{
-                  Iterator<User> it=finallist.iterator();
-                  while(it.hasNext()){
-                      a=it.next();
-                      double e=socialGraph.shortestPathWeight(u, a);
-                      double f=socialGraph.shortestPathWeight(u,finallist.first());
-                      if(e<f){
-                          finallist.addToFront(a);
-                          
-                      }else
-                      if(d>e){
-                          finallist.addAfter(a, us);
-                          break;
-                      }
-                  }
-                  
-              }
-          } catch (NonAvailablePath ex) {
+        LinkedUnorderedList<User> list = new LinkedUnorderedList<>();
+        LinkedUnorderedList<User> finallist = new LinkedUnorderedList<>();
+
+        Object[] users = this.socialGraph.getVertices();
+        for (int j = 0; j < users.length; j++) {
+            Iterator<String> i = ((User) users[j]).getSkills().iterator();
+            while (i.hasNext()) {
+                String s = i.next();
+                if (s.equals(skill)) {
+                    list.addToRear((User) (users[j]));
+                }
+            }
+        }              
+        while (!list.isEmpty()) {
+            Iterator<User> i = list.iterator();
+            double min = Double.MAX_VALUE;
+            User usermin = null;
+            while (i.hasNext()) {
+                User a = i.next();
+                try {
+                    if (socialGraph.shortestPathWeight(u, a) < min) {
+                        min = socialGraph.shortestPathWeight(u, a);                         
+                        usermin=a;
+                    }
+                } catch (NonAvailablePath ex) {
+                    ex.getMessage();
+                }
+                
+            }
+            finallist.addToFront(usermin); 
+            list.remove(usermin);
             
-          }
-      }
+        }
         return finallist;
     }
 
