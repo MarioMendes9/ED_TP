@@ -7,7 +7,6 @@ import Heap.EmptyCollectionException;
 import Heap.Heap;
 import java.util.Iterator;
 
-
 /**
  * Implementaçao de uma network
  *
@@ -369,15 +368,15 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             }
             System.out.println("");
         }
-        
+
         System.out.println("USER");
-        
+
         for (int i = 0; i < this.numVertices; i++) {
-           
+
             System.out.println(vertices[i].toString());
-            
+
         }
-        
+
     }
 
     public Network mstNetwork() {

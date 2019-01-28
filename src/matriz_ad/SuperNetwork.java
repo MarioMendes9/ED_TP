@@ -18,8 +18,12 @@ public class SuperNetwork<T> extends Network<T> {
         super();
     }
 
-    public Iterator iteratorShortestPathEdges(int startVertex, int targetVertex) throws NonAvailablePath{
-           Integer x = 0;
+    public Iterator iteratorShortestPathEdges(T startVertex, T targetVertex) throws NonAvailablePath {
+        return iteratorShortestPathEdges(getIndex(startVertex), getIndex(targetVertex));
+    }
+
+    public Iterator iteratorShortestPathEdges(int startVertex, int targetVertex) throws NonAvailablePath {
+        Integer x = 0;
         ArrayUnorderedList<T> resultShortList = new ArrayUnorderedList<>();
         //Inicializa o vetor de visitados
         Boolean[] visited = new Boolean[this.numVertices];
@@ -27,7 +31,7 @@ public class SuperNetwork<T> extends Network<T> {
             visited[i] = false;
 
         }
-        int [] cost = new int[this.numVertices];
+        int[] cost = new int[this.numVertices];
         //Inicia o vetor de custo 
         for (int i = 0; i < cost.length; i++) {
             cost[i] = Integer.MAX_VALUE;
@@ -62,7 +66,7 @@ public class SuperNetwork<T> extends Network<T> {
             visited[x] = true;
 
             for (int i = 0; i < numVertices; i++) {
-                if ((adjMatrix[x.intValue()][i] >0.0) && !visited[i]) {
+                if ((adjMatrix[x.intValue()][i] > 0.0) && !visited[i]) {
                     if (cost[i] > costTemp + +1) {
                         lastVertice[i] = x;
                         cost[i] = costTemp + +1;
@@ -91,8 +95,9 @@ public class SuperNetwork<T> extends Network<T> {
         }
         return resultShortList.iterator();
     }
-       
-    public boolean areConnected(T u1,T u2){
-        return(adjMatrix[getIndex(u1)][getIndex(u2)]>0);
+
+    public boolean areConnected(T u1, T u2) {
+        return (adjMatrix[getIndex(u1)][getIndex(u2)] > 0);
     }
+
 }
