@@ -7,7 +7,7 @@ package ed_tp;
 
 /**
  *
- * @author dani_
+ * 
  */
 public class CargosProfissionais {
     private int ano;

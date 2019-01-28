@@ -15,7 +15,7 @@ import org.json.simple.parser.ParseException;
 
 /**
  *
- * @author dani_
+ * 
  */
 public class UserInformation {
 
@@ -118,19 +118,15 @@ public class UserInformation {
             }
             JSONArray arraycont = new JSONArray();
             for (int in : users[i].getContacts()) {
-                if (in != 0) {
                     JSONObject o = new JSONObject();
                     o.put("userid", in);
-                    arraycont.add(o);
-                }
+                    arraycont.add(o);                
             }
             JSONArray arraymen = new JSONArray();
             for (int in : users[i].getMencoes()) {
-                if (in != 0) {
                     JSONObject o = new JSONObject();
                     o.put("userid", in);
                     arraymen.add(o);
-                }
             }
             obj.put("id", users[i].getId());
             obj.put("nome", users[i].getNome());
@@ -153,4 +149,9 @@ public class UserInformation {
         System.out.println("ficheiro guardado");
 
     }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+    
 }

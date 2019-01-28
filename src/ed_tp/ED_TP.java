@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
 
 /**
  *
- * @author mario
+ *
  */
 public class ED_TP {
 
@@ -27,13 +27,22 @@ public class ED_TP {
      * @throws org.json.simple.parser.ParseException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
-        String file = "socialgraph2.json";
+        String file = "socialgraph.json";
         User[] users = new User[20];
         UserInformation info = new UserInformation(file, users);
         info.loadInfo();
+        info.setFile("socialgraph2.json");
+        User u=new User(6, 20, "lmao", "aaa@aaa.com", 0);
+        u.addCargo(1, "grande cargo", "estg");
+        u.addFormacao(2020, "lei");
+        u.addMencao(57);
+        u.addMencao(0);
+        u.addContact(0);
+        u.addContact(26);
+        u.addSkill("Java");
+        users[5]=u;
         info.saveInfo();
         
-        Network n=new Network();
         
         
     }

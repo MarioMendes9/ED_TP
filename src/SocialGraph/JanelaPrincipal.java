@@ -10,6 +10,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,6 +35,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         social.addUser(user2);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -260,10 +263,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         user.setId(1);
 
         //Pedir o email
+        String email="";
+        do{
         System.out.println("Insira o seu email:");
-        String email = s.next();
+        email = s.next();
         user.setEmail(email.toLowerCase());
-
+        if(!user.isEmailValid(email)){
+            System.out.println("Insira um email válido!");
+        }
+        }while(!user.isEmailValid(email));
         //Pedir a formaçao academica 
         int ano = 0;
         String tipoFormaçao;

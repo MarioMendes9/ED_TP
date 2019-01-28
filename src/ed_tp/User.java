@@ -5,28 +5,32 @@
  */
 package ed_tp;
 
+import Heap.LinkedUnorderedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
- * TODOS OS USER IDS TEM QUE SER >0
- * @author dani_
+ *
+ * 
  */
 public class User {
     private int id, idade, visualizacoes;
     private String nome, email;
-    private String[] skills;
-    private FormacaoAcademica[] formacao;
-    private CargosProfissionais[] cargos;
-    private int[] contacts, mencoes;    
+    private LinkedUnorderedList<String> skills;
+    private LinkedUnorderedList<FormacaoAcademica> formacao;
+    private LinkedUnorderedList<CargosProfissionais> cargos;
+    private LinkedUnorderedList<Integer> contacts, mencoes;    
 
     /**
      *
      */
     public User() {
-        this.formacao= new FormacaoAcademica[3];
-        this.cargos=new CargosProfissionais[5];
-        this.skills=new String[10];
+        this.formacao= new LinkedUnorderedList<>();
+        this.cargos=new LinkedUnorderedList<>();
+        this.skills=new LinkedUnorderedList<>();
         this.visualizacoes=1;
-        this.contacts=new int[20];
-        this.mencoes=new int[20];
+        this.contacts=new LinkedUnorderedList<>();
+        this.mencoes=new LinkedUnorderedList<>();
     }
 
     /**
@@ -41,13 +45,13 @@ public class User {
         this.id = id;
         this.idade = idade;
         this.nome = nome;
-        this.email = email;
-        this.formacao= new FormacaoAcademica[3];
-        this.cargos=new CargosProfissionais[5];
+        setEmail(email);
+        this.formacao= new LinkedUnorderedList<>();
+        this.cargos=new LinkedUnorderedList<>();
+        this.skills=new LinkedUnorderedList<>();
         this.visualizacoes=visualizacoes;
-        this.skills=new String[10];
-        this.contacts=new int[20];
-        this.mencoes=new int[20];
+        this.contacts=new LinkedUnorderedList<>();
+        this.mencoes=new LinkedUnorderedList<>();
     }
     
     /**
@@ -55,15 +59,7 @@ public class User {
      * @param s
      */
     public void addSkill(String s){
-        if(skills[skills.length-1]!=null){
-            expandSkillsCapacity();
-        }
-        for(int i=0;i<skills.length;i++){
-            if(skills[i]==null){
-                skills[i]=s;
-                break;
-            }
-        }
+        skills.addToRear(s);
     }
     
     /**
@@ -71,15 +67,7 @@ public class User {
      * @param c 
      */
     public void addContact(int c){
-        if(contacts[contacts.length-1]!=0){
-            expandSkillsCapacity();
-        }
-        for(int i=0;i<contacts.length;i++){
-            if(contacts[i]==0){
-                contacts[i]=c;
-                break;
-            }
-        }
+        contacts.addToRear(c);
     } 
     
     /**
@@ -87,15 +75,7 @@ public class User {
      * @param c
      */
     public void addMencao(int c){
-        if(mencoes[mencoes.length-1]!=0){
-            expandSkillsCapacity();
-        }
-        for(int i=0;i<mencoes.length;i++){
-            if(mencoes[i]==0){
-                mencoes[i]=c;
-                break;
-            }
-        }
+        mencoes.addToRear(c);
     }
     
     /**
@@ -104,16 +84,8 @@ public class User {
      * @param form
      */
     public void addFormacao(int ano, String form){
-        FormacaoAcademica f=new FormacaoAcademica(ano,form);
-        if(formacao[formacao.length-1]!=null){
-            expandFormacaoCapacity();
-        }
-        for(int i=0;i<formacao.length;i++){
-            if(formacao[i]==null){
-                formacao[i]=f;
-                break;
-            }
-        }
+        FormacaoAcademica f=new FormacaoAcademica(ano, form);
+        formacao.addToRear(f);
     }
     
     /**
@@ -124,15 +96,7 @@ public class User {
      */
     public void addCargo(int ano, String cargo, String empresa){
         CargosProfissionais c=new CargosProfissionais(ano,cargo,empresa);
-        if(cargos[cargos.length-1]!=null){
-            expandCargosCapacity();
-        }
-        for(int i=0;i<cargos.length;i++){
-            if(cargos[i]==null){
-                cargos[i]=c;
-                break;
-            }
-        }
+        cargos.addToRear(c);
     }
 
     /**
@@ -175,46 +139,27 @@ public class User {
         return email;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String[] getSkills() {
+    public LinkedUnorderedList<String> getSkills() {
         return skills;
     }
 
-    /**
-     *
-     * @return
-     */
-    public FormacaoAcademica[] getFormacao() {
+    public LinkedUnorderedList<FormacaoAcademica> getFormacao() {
         return formacao;
     }
 
-    /**
-     *
-     * @return
-     */
-    public CargosProfissionais[] getCargos() {
+    public LinkedUnorderedList<CargosProfissionais> getCargos() {
         return cargos;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int[] getContacts() {
+    public LinkedUnorderedList<Integer> getContacts() {
         return contacts;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int[] getMencoes() {
+    public LinkedUnorderedList<Integer> getMencoes() {
         return mencoes;
     }
 
+   
     /**
      *
      * @param id
@@ -244,10 +189,18 @@ public class User {
      * @param email
      */
     public void setEmail(String email) {
-        this.email = email;
+        if(isEmailValid(email)){
+            this.email=email;
+        }else
+            throw new IllegalArgumentException("email não é valido");
     }
 
-    
+    public boolean isEmailValid(String email) {
+    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(email);
+    return matcher.matches();
+}
     
     /**
      *
@@ -263,77 +216,6 @@ public class User {
     public void setVisualizacoes(int visualizacoes) {
         this.visualizacoes = visualizacoes;
     }
-
-    
-    /**
-     *
-     */
-    public void expandContactCapacity(){
-       int[] array = new int[this.contacts.length * 2];
-        /**
-         * Copia os valores para o novo vetor
-         */
-        for (int i = 0; i < this.contacts.length; i++) {
-            array[i] = this.contacts[i];
-        }
-        contacts=array;
-   }
-   
-    /**
-     *
-     */
-    public void expandMencoesCapacity(){
-       int[] array = new int[this.mencoes.length * 2];
-        /**
-         * Copia os valores para o novo vetor
-         */
-        for (int i = 0; i < this.mencoes.length; i++) {
-            array[i] = this.mencoes[i];
-        }
-        mencoes=array;
-   }
-   
-    /**
-     *
-     */
-    public void expandSkillsCapacity(){
-       String[] array = new String[this.skills.length * 2];
-        /**
-         * Copia os valores para o novo vetor
-         */
-        for (int i = 0; i < this.skills.length; i++) {
-            array[i] = this.skills[i];
-        }
-        skills=array;
-   }
-    
-    /**
-     *
-     */
-    public void expandCargosCapacity(){
-       CargosProfissionais[] array = (CargosProfissionais[])(new Object[this.cargos.length * 2]);
-        /**
-         * Copia os valores para o novo vetor
-         */
-        for (int i = 0; i < this.cargos.length; i++) {
-            array[i] = this.cargos[i];
-        }
-        cargos=array;
-   }
-    
-    /**
-     *
-     */
-    public void expandFormacaoCapacity(){
-       FormacaoAcademica[] array = (FormacaoAcademica[])(new Object[this.formacao.length * 2]);
-        /**
-         * Copia os valores para o novo vetor
-         */
-        for (int i = 0; i < this.formacao.length; i++) {
-            array[i] = this.formacao[i];
-        }
-        formacao=array;
-   }
 
     /**
      *

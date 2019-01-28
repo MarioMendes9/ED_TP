@@ -19,6 +19,7 @@ public class teste {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        JanelaPrincipal j= new JanelaPrincipal();
         SocialGraph social = new SocialGraph();
         User user1 = new User(1, 10, "Mario", "mario", 1);
         User user2 = new User(2, 10, "jorge", "jorge", 1);
