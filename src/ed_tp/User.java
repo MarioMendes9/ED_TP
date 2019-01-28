@@ -192,7 +192,7 @@ public class User {
         if(isEmailValid(email)){
             this.email=email;
         }else
-            throw new IllegalArgumentException("email não é valido");
+            System.out.println("Email inválido!");        
     }
 
     public boolean isEmailValid(String email) {

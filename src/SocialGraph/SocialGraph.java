@@ -6,13 +6,15 @@
 package SocialGraph;
 
 import ArrayList.ArrayUnorderedList;
+import Heap.EmptyCollectionException;
+import Heap.LinkedUnorderedList;
 import Heap.UnorderedListADT;
-import matriz_ad.Network;
 import ed_tp.User;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import matriz_ad.NonAvailablePath;
+import matriz_ad.SuperNetwork;
 
 /**
  *
@@ -21,10 +23,10 @@ import matriz_ad.NonAvailablePath;
  */
 public class SocialGraph {
 
-    private Network<User> socialGraph;
+    private SuperNetwork<User> socialGraph;
 
     public SocialGraph() {
-        this.socialGraph = new Network<>();
+        this.socialGraph = new SuperNetwork<>();
 
     }
 
@@ -148,8 +150,50 @@ public class SocialGraph {
 
     }
 
-    public void dez() {
-
+    public LinkedUnorderedList<User> usersWithSkill(String skill, User u) throws EmptyCollectionException {
+      LinkedUnorderedList<User> list=new LinkedUnorderedList<>();
+      LinkedUnorderedList<User> finallist=new LinkedUnorderedList<>();
+     
+      Object[] users=this.socialGraph.getVertices();
+      for(int j=0;j<users.length;j++){
+          Iterator<String> i=((User)users[j]).getSkills().iterator();
+          while(i.hasNext()){
+              String s=i.next();
+              if(s.equals(skill)){
+                  list.addToRear((User)(users[j]));
+              }
+          }     
+      }
+      Iterator<User> i=list.iterator();
+      while(i.hasNext()){
+          User a = null;
+          User us=i.next();
+          try {
+              double d=socialGraph.shortestPathWeight(u,us);
+              if(finallist.isEmpty()){
+                  finallist.addToFront(us);
+              }else{
+                  Iterator<User> it=finallist.iterator();
+                  while(it.hasNext()){
+                      a=it.next();
+                      double e=socialGraph.shortestPathWeight(u, a);
+                      double f=socialGraph.shortestPathWeight(u,finallist.first());
+                      if(e<f){
+                          finallist.addToFront(a);
+                          
+                      }else
+                      if(d>e){
+                          finallist.addAfter(a, us);
+                          break;
+                      }
+                  }
+                  
+              }
+          } catch (NonAvailablePath ex) {
+            
+          }
+      }
+        return finallist;
     }
 
     public void print() {

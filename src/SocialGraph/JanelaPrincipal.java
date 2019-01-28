@@ -268,9 +268,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         System.out.println("Insira o seu email:");
         email = s.next();
         user.setEmail(email.toLowerCase());
-        if(!user.isEmailValid(email)){
-            System.out.println("Insira um email válido!");
-        }
         }while(!user.isEmailValid(email));
         //Pedir a formaçao academica 
         int ano = 0;

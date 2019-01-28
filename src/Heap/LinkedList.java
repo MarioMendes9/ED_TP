@@ -159,7 +159,7 @@ public class LinkedList<T> implements ListADT<T> {
             if (!hasNext()) {                              
                     throw new NoSuchElementException("Não há próximo");                                             
             }
-            if(expectedmodcount!=modcount){
+           if(expectedmodcount!=modcount){
                 throw new ConcurrentModificationException("Lista modificada!");
             }
             T a=current.getElement();
