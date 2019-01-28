@@ -7,7 +7,6 @@ import Heap.EmptyCollectionException;
 import Heap.Heap;
 import java.util.Iterator;
 
-
 /**
  * Implementaçao de uma network
  *
@@ -369,15 +368,15 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             }
             System.out.println("");
         }
-        
+
         System.out.println("USER");
-        
+
         for (int i = 0; i < this.numVertices; i++) {
-           
+
             System.out.println(vertices[i].toString());
-            
+
         }
-        
+
     }
 
     public Network mstNetwork() {
@@ -478,8 +477,13 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return edge;
     }
 
-        public Iterator iteratorShortestPathEdges(int startVertex, int targetVertex) throws NonAvailablePath{
-           Integer x = 0;
+     public Iterator iteratorShortestPathEdges(T startVertex, T targetVertex) throws NonAvailablePath {
+           return iteratorShortestPath(getIndex(startVertex),  getIndex(targetVertex));
+     }
+    
+    
+    public Iterator iteratorShortestPathEdges(int startVertex, int targetVertex) throws NonAvailablePath {
+        Integer x = 0;
         ArrayUnorderedList<T> resultShortList = new ArrayUnorderedList<>();
         //Inicializa o vetor de visitados
         Boolean[] visited = new Boolean[this.numVertices];
@@ -487,7 +491,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             visited[i] = false;
 
         }
-        int [] cost = new int[this.numVertices];
+        int[] cost = new int[this.numVertices];
         //Inicia o vetor de custo 
         for (int i = 0; i < cost.length; i++) {
             cost[i] = Integer.MAX_VALUE;
@@ -522,7 +526,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             visited[x] = true;
 
             for (int i = 0; i < numVertices; i++) {
-                if ((adjMatrix[x.intValue()][i] >0.0) && !visited[i]) {
+                if ((adjMatrix[x.intValue()][i] > 0.0) && !visited[i]) {
                     if (cost[i] > costTemp + +1) {
                         lastVertice[i] = x;
                         cost[i] = costTemp + +1;
@@ -551,6 +555,5 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
         return resultShortList.iterator();
     }
-       
-    
+
 }

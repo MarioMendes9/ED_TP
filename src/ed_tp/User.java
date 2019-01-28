@@ -6,6 +6,7 @@
 package ed_tp;
 
 import Heap.LinkedUnorderedList;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -258,6 +259,31 @@ public class User {
         
         return "User{" + "id=" + id + "; idade=" + idade + "; nome=" + nome + "; email=" + email ;//+ "; skills=" + s + "; formacao=" + f + "; cargos=" + c + ";, contacts=" + co + "; mencoes=" + m + '}'+ "; visualizacoes=" + visualizacoes ;
     }
+
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     
 }
