@@ -259,6 +259,7 @@ public class ShowUser extends javax.swing.JInternalFrame {
             
         } catch (ElementNotFoundException ex) {
             JOptionPane.showMessageDialog(this, "Utilizador nao existe");
+            dispose();
         }
         
         

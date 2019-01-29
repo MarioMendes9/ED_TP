@@ -130,8 +130,10 @@ public class EnemyCompanies extends javax.swing.JInternalFrame {
         Boolean b=social.enemyCompanies(emp1, emp2);
         if(b){
             JOptionPane.showMessageDialog(this, "As empresas em questão não possuem utilizadores conectados");
+            
         }else{
             JOptionPane.showMessageDialog(this, "As empresas em questão possuem utilizadores conectados");
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

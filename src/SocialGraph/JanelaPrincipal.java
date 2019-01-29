@@ -8,15 +8,10 @@ package SocialGraph;
 import ed_tp.User;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author User
+ * Classe e main classe para apresentar a interface grafica e interagir 
  */
 public class JanelaPrincipal extends javax.swing.JFrame {
 
@@ -30,12 +25,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         social = new SocialGraph();
 
         User user1 = new User(1, 23, "Mário", "mario@hotmail.com", 1);
-        User user2 = new User(2, 23, "Mário", "jorge@hotmail.com", 2);
+        User user2 = new User(2, 23, "Jorge", "jorge@hotmail.com", 2);
+        User user3 = new User(3, 23, "Leite", "Leite@hotmail.com", 2);
         user2.addSkill("Java");
+        user3.addSkill("c");
         social.addUser(user1);
         social.addUser(user2);
+        user2.addCargo(1999, "rei", "estg");
+        social.addUser(user3);
         try {
             social.addUserFriend(user1.getEmail(), user2.getEmail());
+            social.addUserFriend(user1.getEmail(), user3.getEmail());
         } catch (ElementNotFoundException ex) {
            
         }
@@ -62,10 +62,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Social_Graph");
@@ -149,6 +151,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/growth-hacking-key-business-path-short-512.png"))); // NOI18N
         jMenuItem5.setText("ShortPath");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +160,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/071717175850icon-coloquio.jpg"))); // NOI18N
         jMenuItem6.setText("CanMeet");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +169,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem6);
 
-        jMenuItem7.setText("FastFriends");
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/r3d.jpg"))); // NOI18N
+        jMenuItem1.setText("CantMeet");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/28129-200.png"))); // NOI18N
+        jMenuItem7.setText("FastFriends Companies");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -173,22 +187,23 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem7);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/148602-200.png"))); // NOI18N
-        jMenuItem8.setText("EnemyCompanies");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem8);
-
-        jMenuItem9.setText("9");
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/images.png"))); // NOI18N
+        jMenuItem9.setText("FastFriends Skills");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem9);
+
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled-35-512.png"))); // NOI18N
+        jMenuItem13.setText("Work On");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/friends.png"))); // NOI18N
         jMenuItem10.setText("UserWithSkills");
@@ -198,6 +213,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem10);
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/148602-200.png"))); // NOI18N
+        jMenuItem8.setText("EnemyCompanies");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
 
@@ -223,15 +247,22 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO dd your handling code here:
+
+        ShortPath shortpa=new ShortPath(social);        
+        jDesktopPane1.add(shortpa);
+        shortpa.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
+        fastFriendsEmpresas fast=new fastFriendsEmpresas(social);
+        jDesktopPane1.add(fast);
+        fast.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
+        fastFriendsSkills skills=new fastFriendsSkills(social);
+        jDesktopPane1.add(skills);
+        skills.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -389,48 +420,28 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        canMeet can=new canMeet(social);        
+        jDesktopPane1.add(can);
+        can.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        cantMeet cant=new cantMeet(social);        
+        jDesktopPane1.add(cant);
+        cant.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+       workOn work=new workOn(social);
+        jDesktopPane1.add(work);
+        work.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         JanelaPrincipal ja = new JanelaPrincipal();
-//        User user1 = new User(1, 23, "Mário", "mario@hotmail.com", 1);
-//        User user2 = new User(2, 24, "Jorge", "j@hotmail.com", 2);
-//        User user3 = new User(3, 25, "Mendes", "m@hotmail.com", 3);
-//        User user4 = new User(4, 26, "Leite", "leite@hotmail.com", 4);
-//        User user5 = new User(5, 27, "Leite", "leitxde@hotmail.com", 5);
-//        User user6 = new User(6, 27, "Leite", "leitejorge@hotmail.com", 5);
-//
-//        ja.social.addUser(user1);
-//        ja.social.addUser(user2);
-//        ja.social.addUser(user3);
-//        ja.social.addUser(user4);
-//        ja.social.addUser(user5);
-//        ja.social.addUser(user6);
-//        ja.social.addUserFriend(user1, user2);
-//        ja.social.addUserFriend(user2, user4);
-//        ja.social.addUserFriend(user3, user1);
-//        ja.social.addUserFriend(user5, user4);
-//        // social.addUserFriend(user6, user2);
-//
-//        ja.social.print();
-//
-//        System.out.println(ja.social.completo());
-//
-//        try {
-//            ArrayList.ArrayUnorderedList<User> xd = ja.social.fastFriends("mario@hotmail.com");
-//            System.out.println("print pode conhecer");
-//            for (int i = 0; i <= xd.size(); i++) {
-//                System.out.println(xd.removeFirst() + " ");
-//
-//            }
-//
-//        } catch (ElementNotFoundException ex) {
-//            System.out.println(ex.getMessage());
-//        }
 
         ja.social.print();
 
@@ -446,9 +457,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

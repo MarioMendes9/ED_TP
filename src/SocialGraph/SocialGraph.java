@@ -3,13 +3,10 @@ package SocialGraph;
 import ArrayList.ArrayUnorderedList;
 import Heap.EmptyCollectionException;
 import Heap.LinkedUnorderedList;
-import Heap.UnorderedListADT;
 import ArrayList.*;
 import ed_tp.CargosProfissionais;
 import ed_tp.User;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import matriz_ad.NonAvailablePath;
 import matriz_ad.SuperNetwork;
 
@@ -47,7 +44,8 @@ public class SocialGraph {
     public void addUserFriend(String first, String second) throws ElementNotFoundException {
         this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(second).getVisualizacoes()));
         this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(first).getVisualizacoes()));
-
+        searchUser(second).addContact(searchUser(first).getId());
+        searchUser(first).addContact(searchUser(second).getId());
     }
 
     /**
@@ -417,6 +415,11 @@ public class SocialGraph {
         
         
         return true;
+    }
+    
+    
+    public double getcustoShortPath(String emailUser1, String emailUser2) throws NonAvailablePath, ElementNotFoundException{
+       return socialGraph.getPathWeight(this.shortPath(emailUser1, emailUser2));
     }
 
     /**

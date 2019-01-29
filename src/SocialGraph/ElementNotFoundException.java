@@ -1,7 +1,5 @@
 package SocialGraph;
 
-import ArrayList.*;
-
 /**
  * Excepçao caso o elemento nao exista
  * 
@@ -9,7 +7,7 @@ import ArrayList.*;
 public class ElementNotFoundException extends Exception {
 
     public ElementNotFoundException() {
-        super("Elemento nao existe");
+        super("Utilizador nao existe");
     }
     
 }
