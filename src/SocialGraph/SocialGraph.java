@@ -27,10 +27,6 @@ public class SocialGraph {
 
     }
 
-    public void removeUser(String email) throws ElementNotFoundException {
-        this.socialGraph.removeVertex(searchUser(email));
-    }
-
     public void addUserFriend(String first, String second) throws ElementNotFoundException {
         this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(second).getVisualizacoes()));
         this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(first).getVisualizacoes()));
