@@ -32,8 +32,8 @@ public class SocialGraph {
     }
 
     public void addUserFriend(String first, String second) throws ElementNotFoundException {
-        this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(first).getVisualizacoes()));
-        this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(second).getVisualizacoes()));
+        this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(second).getVisualizacoes()));
+        this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(first).getVisualizacoes()));
 
     }
 
