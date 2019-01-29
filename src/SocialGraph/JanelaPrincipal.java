@@ -10,13 +10,11 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.json.simple.parser.ParseException;
 
 /**
- * Classe e main classe para apresentar a interface grafica e interagir 
+ * Classe e main classe para apresentar a interface grafica e interagir
  */
 public class JanelaPrincipal extends javax.swing.JFrame {
 
@@ -26,14 +24,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form JanelaPrincipal
-     * @param users
-     * @param file
      */
     public JanelaPrincipal() {
-      social = new SocialGraph(); 
-      
-     
-       info=new UserInformation("socialgraph.json");
+        social = new SocialGraph();
+
+        info = new UserInformation("socialgraph.json");
         try {
             info.loadInfo();
         } catch (IOException ex) {
@@ -41,48 +36,43 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());;
         }
-        
-        users=info.getUsers();
-        
-      
-      
-      //adicionar ao grafo  
-      for (int i = 0; i < users.length; i++) {
-            if(users[i]!=null){
+
+        users = info.getUsers();
+
+        //adicionar ao grafo  
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null) {
                 social.addUser(users[i]);
             }
-            
+
         }
-        
+
         //Ligaçoes 
-        
         for (int i = 0; i < users.length; i++) {
-            if(users[i]!=null){
-                Iterator<Integer> it=users[i].getContacts().iterator();
-                
-                while(it.hasNext()){
-                    int idd=it.next();
+            if (users[i] != null) {
+                Iterator<Integer> it = users[i].getContacts().iterator();
+
+                while (it.hasNext()) {
+                    int idd = it.next();
                     for (int j = 0; j < users.length; j++) {
-                        if(users[j]!=null){
-                            if(idd==users[j].getId()){
+                        if (users[j] != null) {
+                            if (idd == users[j].getId()) {
                                 try {
                                     social.addUserFriend(users[i].getEmail(), users[j].getEmail());
                                 } catch (ElementNotFoundException ex) {
                                     System.out.println(ex.getMessage());
                                 }
                             }
-                        }                        
-                    }                    
+                        }
+                    }
                 }
             }
-            
+
         }
-        
-        
-      initComponents();             
+
+        initComponents();
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,8 +87,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -157,14 +147,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem11.setText("print");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem11);
-
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/diskette.png"))); // NOI18N
         jMenuItem14.setText("Guardar");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +155,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem14);
+
+        jMenuItem11.setText("print");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem11);
 
         jMenuBar1.add(jMenu1);
 
@@ -295,33 +286,49 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * Clique no botao para procurar o caminho mais curto
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 
-        ShortPath shortpa=new ShortPath(social);        
+        ShortPath shortpa = new ShortPath(social);
         jDesktopPane1.add(shortpa);
         shortpa.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-
+    /**
+     * Clique no botao para usar o fastFriendEmpresas
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        fastFriendsEmpresas fast=new fastFriendsEmpresas(social);
+        fastFriendsEmpresas fast = new fastFriendsEmpresas(social);
         jDesktopPane1.add(fast);
         fast.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
+    /**
+     * Clique no botao para usar o fastFriendskills
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        fastFriendsSkills skills=new fastFriendsSkills(social);
+        fastFriendsSkills skills = new fastFriendsSkills(social);
         jDesktopPane1.add(skills);
         skills.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
-
+    /**
+     * Clique no botao para usar o userWithSkills
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        UserWithSkills us=new UserWithSkills(social);
-         jDesktopPane1.add(us);
-         us.setVisible(true);
+        UserWithSkills us = new UserWithSkills(social);
+        jDesktopPane1.add(us);
+        us.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-   /**
+    /**
      * Clique no botao para adicionar um utilizador novo
      *
      * @param evt
@@ -353,12 +360,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         user.setId(social.getSocialGraph().size());
 
         //Pedir o email
-        String email="";
-        do{
-        System.out.println("Insira o seu email:");
-        email = s.next();
-        user.setEmail(email.toLowerCase());
-        }while(!user.isEmailValid(email));
+        String email = "";
+        boolean fds=true;
+        do {
+            System.out.println("Insira o seu email:");
+            email = s.next();
+            user.setEmail(email.toLowerCase());
+            fds=this.emailexist(email);
+          
+            
+        } while (!user.isEmailValid(email) || fds);
         //Pedir a formaçao academica 
         int ano = 0;
         String tipoFormaçao;
@@ -421,10 +432,24 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private boolean emailexist(String email){
+        for (int i = 0; i < users.length; i++) {
+            if(users[i]!=null){
+            if(users[i].getEmail().equals(email)){
+                return true;
+            }
+            }
+        }
+        return false;
+    }
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
 
     }//GEN-LAST:event_jMenu1ActionPerformed
-
+    /**
+     * Clique no botao para adicionar um user
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         ShowUser addUser = new ShowUser(social);
         jDesktopPane1.add(addUser);
@@ -436,7 +461,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       
+
         addUserFriend addFriends = new addUserFriend(social);
         jDesktopPane1.add(addFriends);
         addFriends.setVisible(true);
@@ -445,16 +470,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         social.print();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-/**
- * Clique no botao para saber se o grafo é completo ou nao
- * @param evt 
- */
+    /**
+     * Clique no botao para saber se o grafo é completo ou nao
+     *
+     * @param evt
+     */
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        Boolean completo=social.completo();
-        
-        if(completo==true){
+        Boolean completo = social.completo();
+
+        if (completo == true) {
             JOptionPane.showMessageDialog(this, "Grafo completo");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Grafo nao completo");
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -462,33 +488,53 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
 
     }//GEN-LAST:event_jMenu2ActionPerformed
-
+    /**
+     * Clique no botao para usar o EnemyCompanies
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        EnemyCompanies ene=new EnemyCompanies(social);
+        EnemyCompanies ene = new EnemyCompanies(social);
         jDesktopPane1.add(ene);
         ene.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-
+    /**
+     * Clique no botao para usar o canMeet
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        canMeet can=new canMeet(social);        
+        canMeet can = new canMeet(social);
         jDesktopPane1.add(can);
         can.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
+    /**
+     * Clique no botao para usar o cantMeet
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        cantMeet cant=new cantMeet(social);        
+        cantMeet cant = new cantMeet(social);
         jDesktopPane1.add(cant);
         cant.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    /**
+     * Clique no botao para usar o workOn
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-       workOn work=new workOn(social);
+        workOn work = new workOn(social);
         jDesktopPane1.add(work);
         work.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
-
+    /**
+     * Clique no botao para usar guardar informaçao
+     *
+     * @param evt clique no botao
+     */
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-      try {
+        try {
             info.saveInfo(users);
             JOptionPane.showMessageDialog(this, "Informaçao guardada");
             dispose();
@@ -501,19 +547,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-     
+
         JanelaPrincipal ja = new JanelaPrincipal();
-        
-        
-        
-       
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JanelaPrincipal().setVisible(true);
             }
         });
-      
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

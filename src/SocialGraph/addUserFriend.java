@@ -17,6 +17,7 @@ public class addUserFriend extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form addUserFriend
+     * @param social grafo 
      */
     public addUserFriend(SocialGraph social) {
         this.social = social;

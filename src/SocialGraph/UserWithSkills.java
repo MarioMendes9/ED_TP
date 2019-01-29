@@ -19,6 +19,7 @@ public class UserWithSkills extends javax.swing.JInternalFrame {
     private SocialGraph social;
     /**
      * Creates new form UserWithSkills
+     * @param soc grafo ....
      */
     public UserWithSkills(SocialGraph soc) {
         this.social=soc;

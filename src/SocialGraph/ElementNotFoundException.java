@@ -6,6 +6,9 @@ package SocialGraph;
  */
 public class ElementNotFoundException extends Exception {
 
+    /**
+     * Construtor para esta exceçao 
+     */
     public ElementNotFoundException() {
         super("Utilizador nao existe");
     }

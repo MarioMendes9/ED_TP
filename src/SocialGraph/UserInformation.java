@@ -18,8 +18,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- *
- * 
+ * Classe com as funçoes para ler e armazenar dos ficheiros json
  */
 public class UserInformation {
 
@@ -27,9 +26,8 @@ public class UserInformation {
     private User[] users;
 
     /**
-     *
-     * @param file
-     * @param users
+     * Construtor 
+     * @param file nome do ficheiro 
      */
     public UserInformation(String file) {
         this.file = file;
@@ -37,9 +35,9 @@ public class UserInformation {
     }
 
     /**
-     *
-     * @throws IOException
-     * @throws ParseException
+     * Método para ler o ficheiro 
+     * @throws IOException caso nao abra o ficheiro 
+     * @throws ParseException caso nao consigo fazer o parser
      */
     public void loadInfo() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
@@ -78,18 +76,13 @@ public class UserInformation {
             }
             users[i] = u;
         }
-//        for (Object obj : users) {
-//            if (obj != null) {
-//                System.out.println(obj.toString());
-//            }
-//        }
         System.out.println("Ficheiro carregado");
     }
 
     /**
-     *
-     * @param u
-     * @throws IOException
+     * Método para guardar nos ficheiros 
+     * @param u conjunto de vertices 
+     * @throws IOException nao consigo abrir o ficheiro 
      */
     public void saveInfo(User[] u) throws IOException {
         this.users=u;
@@ -164,10 +157,18 @@ public class UserInformation {
 
     }
 
+    /**
+     * Método para definir o ficheiro 
+     * @param file nome do ficheiro 
+     */
     public void setFile(String file) {
         this.file = file;
     }
 
+    /**
+     * Método para retonar os utilizadores 
+     * @return conjunto de utilizadores 
+     */
     public User[] getUsers() {
         return users;
     }

@@ -416,11 +416,22 @@ public class SocialGraph {
         return true;
     }
 
+    /**
+     * Méotod para retornar o grafo 
+     * @return grafosocial
+     */
     public SuperNetwork<User> getSocialGraph() {
         return socialGraph;
     }
     
-    
+    /**
+     * Método para retornar o custo do caminho menos caro 
+     * @param emailUser1 primeiro user
+     * @param emailUser2 segundo user
+     * @return custo do caminho 
+     * @throws NonAvailablePath senao existir caminho
+     * @throws SocialGraph.ElementNotFoundException se um dos elementos for invalido 
+     */
     public double getcustoShortPath(String emailUser1, String emailUser2) throws NonAvailablePath, ElementNotFoundException{
        return socialGraph.getPathWeight(this.shortPath(emailUser1, emailUser2));
     }
