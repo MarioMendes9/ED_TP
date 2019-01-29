@@ -44,8 +44,7 @@ public class SocialGraph {
     public void addUserFriend(String first, String second) throws ElementNotFoundException {
         this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(second).getVisualizacoes()));
         this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(first).getVisualizacoes()));
-        searchUser(second).addContact(searchUser(first).getId());
-        searchUser(first).addContact(searchUser(second).getId());
+        
     }
 
     /**
@@ -158,7 +157,7 @@ public class SocialGraph {
             //Nao inserir ele memso
             for (int i = 1; i < socialGraph.size(); i++) {
 
-                if (!can.contains((User) users[i])) {
+                if (!can.contains((User) users[i])&& users[i]!=this.searchUser(userMail)) {
                     cant.addToRear((User) users[i]);
                 }
 
@@ -415,6 +414,10 @@ public class SocialGraph {
         
         
         return true;
+    }
+
+    public SuperNetwork<User> getSocialGraph() {
+        return socialGraph;
     }
     
     

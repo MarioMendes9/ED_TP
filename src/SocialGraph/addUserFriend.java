@@ -19,7 +19,7 @@ public class addUserFriend extends javax.swing.JInternalFrame {
      * Creates new form addUserFriend
      */
     public addUserFriend(SocialGraph social) {
-        this.social=social;
+        this.social = social;
         initComponents();
     }
 
@@ -115,11 +115,15 @@ public class addUserFriend extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_secondUserActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String emailUser1=firstUser.getText();
-        String emailUser2=secondUser.getText();
-        
+        String emailUser1 = firstUser.getText();
+        String emailUser2 = secondUser.getText();
+
         try {
             social.addUserFriend(emailUser1, emailUser2);
+
+            social.searchUser(emailUser2).addContact(social.searchUser(emailUser1).getId());
+            social.searchUser(emailUser1).addContact(social.searchUser(emailUser2).getId());
+
             JOptionPane.showMessageDialog(this, "Utilizadores ligados com sucesso");
             this.dispose();
         } catch (ElementNotFoundException ex) {

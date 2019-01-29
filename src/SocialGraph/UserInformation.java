@@ -11,6 +11,7 @@ import User.User;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -30,9 +31,9 @@ public class UserInformation {
      * @param file
      * @param users
      */
-    public UserInformation(String file, User[] users) {
+    public UserInformation(String file) {
         this.file = file;
-        this.users = users;
+        this.users = new User[20];
     }
 
     /**
@@ -87,15 +88,19 @@ public class UserInformation {
 
     /**
      *
+     * @param u
      * @throws IOException
      */
-    public void saveInfo() throws IOException {
+    public void saveInfo(User[] u) throws IOException {
+        this.users=u;
         JSONArray array = new JSONArray();
         int i = 0;
         while (users[i] != null) {
             JSONObject obj = new JSONObject();
             JSONArray arrayfor = new JSONArray();
-            for (FormacaoAcademica f : users[i].getFormacao()) {
+            Iterator<FormacaoAcademica> it3=users[i].getFormacao().iterator();
+            while(it3.hasNext()){
+                FormacaoAcademica f=it3.next();
                 if (f != null) {
                     JSONObject o = new JSONObject();
                     o.put("ano", f.getAno());
@@ -104,7 +109,9 @@ public class UserInformation {
                 }
             }
             JSONArray arraycar = new JSONArray();
-            for (CargosProfissionais c : users[i].getCargos()) {
+            Iterator<CargosProfissionais> it2=users[i].getCargos().iterator();
+            while(it2.hasNext()){
+                CargosProfissionais c=it2.next();
                 if (c != null) {
                     JSONObject o = new JSONObject();
                     o.put("ano", c.getAno());
@@ -114,21 +121,25 @@ public class UserInformation {
                 }
             }
             JSONArray arraysk = new JSONArray();
-            for (String s : users[i].getSkills()) {
+            Iterator<String> it4=users[i].getSkills().iterator();
+            while(it4.hasNext()){
+                String s=it4.next();
                 if (s != null) {
                     arraysk.add(s);
                 }
             }
             JSONArray arraycont = new JSONArray();
-            for (int in : users[i].getContacts()) {
+            Iterator<Integer> it0=users[i].getContacts().iterator();
+            while(it0.hasNext()){
                     JSONObject o = new JSONObject();
-                    o.put("userid", in);
+                    o.put("userid", it0.next());
                     arraycont.add(o);                
             }
             JSONArray arraymen = new JSONArray();
-            for (int in : users[i].getMencoes()) {
+            Iterator<Integer> it1=users[i].getMencoes().iterator();
+            while(it1.hasNext()){
                     JSONObject o = new JSONObject();
-                    o.put("userid", in);
+                    o.put("userid", it1.next());
                     arraymen.add(o);
             }
             obj.put("id", users[i].getId());
@@ -146,7 +157,7 @@ public class UserInformation {
         }
         JSONObject obje = new JSONObject();
         obje.put("grafoSocial", array);
-        FileWriter ficheiro = new FileWriter("socialgraph2.json");
+        FileWriter ficheiro = new FileWriter(file);
         ficheiro.write(obje.toJSONString());
         ficheiro.close();
         System.out.println("ficheiro guardado");
@@ -156,5 +167,10 @@ public class UserInformation {
     public void setFile(String file) {
         this.file = file;
     }
+
+    public User[] getUsers() {
+        return users;
+    }
+    
     
 }

@@ -6,9 +6,14 @@
 package SocialGraph;
 
 import User.User;
+import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.json.simple.parser.ParseException;
 
 /**
  * Classe e main classe para apresentar a interface grafica e interagir 
@@ -16,29 +21,65 @@ import javax.swing.JOptionPane;
 public class JanelaPrincipal extends javax.swing.JFrame {
 
     private SocialGraph social;
+    private UserInformation info;
+    private User[] users;
 
     /**
      * Creates new form JanelaPrincipal
+     * @param users
+     * @param file
      */
     public JanelaPrincipal() {
-        initComponents();
-        social = new SocialGraph();
-
-        User user1 = new User(1, 23, "Mário", "mario@hotmail.com", 1);
-        User user2 = new User(2, 23, "Jorge", "jorge@hotmail.com", 2);
-        User user3 = new User(3, 23, "Leite", "Leite@hotmail.com", 2);
-        user2.addSkill("Java");
-        user3.addSkill("c");
-        social.addUser(user1);
-        social.addUser(user2);
-        user2.addCargo(1999, "rei", "estg");
-        social.addUser(user3);
+      social = new SocialGraph(); 
+      
+     
+       info=new UserInformation("socialgraph.json");
         try {
-            social.addUserFriend(user1.getEmail(), user2.getEmail());
-            social.addUserFriend(user1.getEmail(), user3.getEmail());
-        } catch (ElementNotFoundException ex) {
-           
+            info.loadInfo();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());;
         }
+        
+        users=info.getUsers();
+        
+      
+      
+      //adicionar ao grafo  
+      for (int i = 0; i < users.length; i++) {
+            if(users[i]!=null){
+                social.addUser(users[i]);
+            }
+            
+        }
+        
+        //Ligaçoes 
+        
+        for (int i = 0; i < users.length; i++) {
+            if(users[i]!=null){
+                Iterator<Integer> it=users[i].getContacts().iterator();
+                
+                while(it.hasNext()){
+                    int idd=it.next();
+                    for (int j = 0; j < users.length; j++) {
+                        if(users[j]!=null){
+                            if(idd==users[j].getId()){
+                                try {
+                                    social.addUserFriend(users[i].getEmail(), users[j].getEmail());
+                                } catch (ElementNotFoundException ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+                            }
+                        }                        
+                    }                    
+                }
+            }
+            
+        }
+        
+        
+      initComponents();             
     }
 
     
@@ -57,6 +98,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -122,6 +164,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem11);
+
+        jMenuItem14.setText("Guardar");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem14);
 
         jMenuBar1.add(jMenu1);
 
@@ -300,7 +350,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         } while (idade <= 0 || idade > 100);
         user.setIdade(idade);
-        user.setId(1);
+        user.setId(social.getSocialGraph().size());
 
         //Pedir o email
         String email="";
@@ -437,19 +487,33 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         work.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+      try {
+            info.saveInfo(users);
+            JOptionPane.showMessageDialog(this, "Informaçao guardada");
+            dispose();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Nao conseguiu guardar");
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+     
         JanelaPrincipal ja = new JanelaPrincipal();
-
-        ja.social.print();
+        
+        
+        
+       
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JanelaPrincipal().setVisible(true);
             }
         });
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -462,6 +526,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
