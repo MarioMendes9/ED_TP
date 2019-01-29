@@ -13,26 +13,49 @@ import java.util.logging.Logger;
 import matriz_ad.NonAvailablePath;
 import matriz_ad.SuperNetwork;
 
+/**
+ *
+ * @author dani_
+ */
 public class SocialGraph {
 
     private SuperNetwork<User> socialGraph;
 
+    /**
+     *Construtor por defeito
+     */
     public SocialGraph() {
         this.socialGraph = new SuperNetwork<>();
 
     }
 
+    /**
+     *Método que permite adicionar um utilizador
+     * @param add o utilizador a adicionar
+     */
     public void addUser(User add) {
         this.socialGraph.addVertex(add);
 
     }
 
+    /**
+     * Método que vai ligar dois utilizadores no grafo
+     * @param first primeiro utilizador
+     * @param second segundo utilizador
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public void addUserFriend(String first, String second) throws ElementNotFoundException {
         this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(second).getVisualizacoes()));
         this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(first).getVisualizacoes()));
 
     }
 
+    /**
+     * Método que permite encontrar um user através do email
+     * @param email email do utilizador a pesquisar
+     * @return o utilizador
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public User searchUser(String email) throws ElementNotFoundException {
 
         Object[] users = socialGraph.getVertices();
@@ -49,6 +72,10 @@ public class SocialGraph {
 
     }
 
+    /**
+     * Método que permite verificar se o grafo é completo
+     * @return true se for completo, false se não
+     */
     public boolean completo() {
         if (!socialGraph.isConnected()) {
             return false;
@@ -81,6 +108,14 @@ public class SocialGraph {
         return true;
     }
 
+    /**
+     * Método que retorna um iterador com o caminho mais curto entre dois utilizadores
+     * @param emailUser1 primeiro utilizador
+     * @param emailUser2 segundo utilizador
+     * @return um iterador com o caminho mais curto entre os vertices
+     * @throws NonAvailablePath
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public Iterator<User> shortPath(String emailUser1, String emailUser2) throws NonAvailablePath, ElementNotFoundException {
 
         Iterator<User> it = socialGraph.iteratorShortestPath(searchUser(emailUser1), searchUser(emailUser2));
@@ -88,6 +123,12 @@ public class SocialGraph {
         return it;
     }
 
+    /**
+     *Método que permite verificar quais os utilizadores que são alcança´veis a partir de um determinado utilizador
+     * @param userMail utilizador inicial
+     * @return lista com os users que podes ser alcançados
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public ArrayUnorderedList<User> canMeet(String userMail) throws ElementNotFoundException {
         User user = searchUser(userMail);
         ArrayUnorderedList<User> knows = new ArrayUnorderedList<>();
@@ -102,6 +143,12 @@ public class SocialGraph {
         return knows;
     }
 
+    /**
+     *Método que ermite verificar quais os utilizadores que não são possíveis de contactar a partir de um determinado user
+     * @param userMail user inicial
+     * @return lista de utilizadores que não podem ser alcançados
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public ArrayUnorderedList<User> cantMeet(String userMail) throws ElementNotFoundException {
         ArrayUnorderedList<User> can = this.canMeet(userMail);
         ArrayUnorderedList<User> cant = new ArrayUnorderedList<>();
@@ -122,6 +169,14 @@ public class SocialGraph {
         return cant;
     }
 
+    /**
+     *Método que permite verificar a partir de um dado utilizador qual a lista 
+     *de utilizadores que fazem parte dos contactos da lista de contactos que trabalharam em determinada empresa
+     * @param userMail utilizador inicial
+     * @param goal empresa em questão
+     * @return lista com os utilizadores 
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public ArrayUnorderedList<User> fastFriendsEmpresa(String userMail, String goal) throws ElementNotFoundException {
 
         User user = searchUser(userMail);
@@ -170,10 +225,11 @@ public class SocialGraph {
     }
 
     /**
-     *
-     * @param userMail
-     * @param skills
-     * @return
+     *Método que permite verificar a partir de um dado utilizador qual a lista 
+     *de utilizadores que fazem parte dos contactos da lista de contactos que trabalharam em determinada empresa
+     * @param userMail utilizador inicial
+     * @param skills lista de skills para pesquisa
+     * @return lista de utilizadores que se inserem no problema
      * @throws ElementNotFoundException
      */
     public ArrayUnorderedList<User> fastFriendsSkills(String userMail, ListADT<String> skills) throws ElementNotFoundException {
@@ -219,6 +275,14 @@ public class SocialGraph {
         return fastfriends;
     }
 
+    /**
+     * Método que apresenta uma lista de utilizadores de determinada empresa relacionados
+     * com um determinado user
+     * @param userMail mail do user em questão
+     * @param Empresa empresa em questão
+     * @return lista de utilizadores que se inserem no enunciado
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public ArrayUnorderedList<User> workOn(String userMail, String Empresa) throws ElementNotFoundException {
         User user = searchUser(userMail);
         ArrayUnorderedList<User> workThere = new ArrayUnorderedList<>();
@@ -242,10 +306,15 @@ public class SocialGraph {
 
     }
 
-    public void nove() {
-
-    }
-
+    /**
+     * Método que apresenta uma lista de utilizadores que tem determinado skill
+     * a partir de um determinado utilizador, ordenados pelo custo de ligação
+     * @param skill skill em questão
+     * @param email email do user em questão
+     * @return lista com os utilizadores alcançaveis ordenada pelo custo
+     * @throws EmptyCollectionException
+     * @throws SocialGraph.ElementNotFoundException
+     */
     public LinkedUnorderedList<User> usersWithSkill(String skill, String email) throws EmptyCollectionException, ElementNotFoundException {
         User u=searchUser(email);
         LinkedUnorderedList<User> list = new LinkedUnorderedList<>();
@@ -302,6 +371,13 @@ public class SocialGraph {
         return finallist;
     }
 
+    /**
+     * Método que verifica, dadas duas empresas, se utilizadores com cargos na mesmas
+     * se encontram ligados 
+     * @param empresa1 primeira empresa
+     * @param empresa2 segunda empresa
+     * @return true se não houver ligações, false se houver
+     */
     public boolean enemyCompanies(String empresa1,String empresa2) {
 
         Object[] users = socialGraph.getVertices();
@@ -342,6 +418,10 @@ public class SocialGraph {
         
         return true;
     }
+
+    /**
+     *Método que imprime a matriz
+     */
     public void print() {
         socialGraph.printmatriz();
     }

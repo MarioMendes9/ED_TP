@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 /**
  *
  * 
+ * @author dani_
  */
 public class User {
     private int id, idade, visualizacoes;
@@ -23,7 +24,7 @@ public class User {
     private LinkedUnorderedList<Integer> contacts, mencoes;    
 
     /**
-     *
+     *Construtor por defeito que inicializa as listas
      */
     public User() {
         this.formacao= new LinkedUnorderedList<>();
@@ -35,7 +36,7 @@ public class User {
     }
 
     /**
-     *
+     *Construtor com parametros que inicializa as listas
      * @param id
      * @param idade
      * @param nome
@@ -56,31 +57,31 @@ public class User {
     }
     
     /**
-     *
-     * @param s
+     *Método que adiciona uma skill ao user
+     * @param s skill
      */
     public void addSkill(String s){
         skills.addToRear(s);
     }
     
     /**
-     * 
-     * @param c 
+     * Método que adiciona um contacto ao user
+     * @param c contacto
      */
     public void addContact(int c){
         contacts.addToRear(c);
     } 
     
     /**
-     *
-     * @param c
+     *Método que adiciona uma menção ao user
+     * @param c mençao
      */
     public void addMencao(int c){
         mencoes.addToRear(c);
     }
     
     /**
-     *
+     *Método que adiciona formaçao
      * @param ano
      * @param form
      */
@@ -90,7 +91,7 @@ public class User {
     }
     
     /**
-     *
+     *Método que adiciona cargo
      * @param ano
      * @param cargo
      * @param empresa
@@ -110,7 +111,7 @@ public class User {
 
     /**
      *
-     * @return
+     * @return idade
      */
     public int getIdade() {
         return idade;
@@ -118,7 +119,7 @@ public class User {
 
     /**
      *
-     * @return
+     * @return visualizacoes
      */
     public int getVisualizacoes() {
         return visualizacoes;
@@ -126,7 +127,7 @@ public class User {
 
     /**
      *
-     * @return
+     * @return nome
      */
     public String getNome() {
         return nome;
@@ -134,28 +135,48 @@ public class User {
 
     /**
      *
-     * @return
+     * @return email
      */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @return lista de skills
+     */
     public LinkedUnorderedList<String> getSkills() {
         return skills;
     }
 
+    /**
+     *
+     * @return lista de formações
+     */
     public LinkedUnorderedList<FormacaoAcademica> getFormacao() {
         return formacao;
     }
 
+    /**
+     *
+     * @return lista de cargos
+     */
     public LinkedUnorderedList<CargosProfissionais> getCargos() {
         return cargos;
     }
 
+    /**
+     *
+     * @return lista de contactos
+     */
     public LinkedUnorderedList<Integer> getContacts() {
         return contacts;
     }
 
+    /**
+     *
+     * @return lista de mençoes
+     */
     public LinkedUnorderedList<Integer> getMencoes() {
         return mencoes;
     }
@@ -196,6 +217,11 @@ public class User {
             System.out.println("Email inválido!");        
     }
 
+    /**
+     *
+     * @param email
+     * @return
+     */
     public boolean isEmailValid(String email) {
     String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
     Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
@@ -204,7 +230,7 @@ public class User {
 }
     
     /**
-     *
+     *Método que adiciona uma visualização ao user
      */
     public void addVisualizacao(){
         this.visualizacoes++;
@@ -219,7 +245,7 @@ public class User {
     }
 
     /**
-     *
+     *Método toString
      * @return
      */
     @Override
@@ -260,8 +286,11 @@ public class User {
         return "User{" + "id=" + id + "; idade=" + idade + "; nome=" + nome + "; email=" + email ;//+ "; skills=" + s + "; formacao=" + f + "; cargos=" + c + ";, contacts=" + co + "; mencoes=" + m + '}'+ "; visualizacoes=" + visualizacoes ;
     }
 
-
-
+    /**
+     *Método que compara dois user
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

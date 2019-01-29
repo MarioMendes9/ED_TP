@@ -8,19 +8,20 @@ package ed_tp;
 /**
  *
  * 
+ * @author dani_
  */
 public class FormacaoAcademica {
     private int ano;
     private String formacao;
 
     /**
-     *
+     *Construtor por defeito
      */
     public FormacaoAcademica() {
     }
 
     /**
-     *
+     *Construtor com parametros
      * @param ano
      * @param formacao
      */
@@ -31,7 +32,7 @@ public class FormacaoAcademica {
 
     /**
      *
-     * @return
+     * @return ano
      */
     public int getAno() {
         return ano;
@@ -47,7 +48,7 @@ public class FormacaoAcademica {
 
     /**
      *
-     * @return
+     * @return formaçao
      */
     public String getFormacao() {
         return formacao;
@@ -62,7 +63,7 @@ public class FormacaoAcademica {
     }
 
     /**
-     *
+     *Método tostring
      * @return
      */
     @Override

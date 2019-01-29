@@ -8,21 +8,22 @@ package ed_tp;
 /**
  *
  * 
+ * @author dani_
  */
 public class CargosProfissionais {
     private int ano;
     private String cargo, empresa;
 
     /**
-     *
+     *Construtor por defeito
      */
     public CargosProfissionais() {
     }
 
     /**
-     *
-     * @param ano
-     * @param cargo
+     *Construtor com parametros
+     * @param ano 
+     * @param cargo 
      * @param empresa
      */
     public CargosProfissionais(int ano, String cargo, String empresa) {
@@ -33,7 +34,7 @@ public class CargosProfissionais {
 
     /**
      *
-     * @return
+     * @return ano
      */
     public int getAno() {
         return ano;
@@ -49,7 +50,7 @@ public class CargosProfissionais {
 
     /**
      *
-     * @return
+     * @return cargo
      */
     public String getCargo() {
         return cargo;
@@ -65,7 +66,7 @@ public class CargosProfissionais {
 
     /**
      *
-     * @return
+     * @return empresa
      */
     public String getEmpresa() {
         return empresa;
@@ -80,7 +81,7 @@ public class CargosProfissionais {
     }
 
     /**
-     *
+     *método tostring
      * @return
      */
     @Override
