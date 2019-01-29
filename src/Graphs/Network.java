@@ -1,4 +1,4 @@
-package matriz_ad;
+package Graphs;
 
 import LinkedStack.*;
 import LinkedQueue.*;

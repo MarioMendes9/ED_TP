@@ -5,13 +5,13 @@ import Heap.EmptyCollectionException;
 import Heap.LinkedUnorderedList;
 import Heap.UnorderedListADT;
 import ArrayList.*;
-import ed_tp.CargosProfissionais;
-import ed_tp.User;
+import User.CargosProfissionais;
+import User.User;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import matriz_ad.NonAvailablePath;
-import matriz_ad.SuperNetwork;
+import Graphs.NonAvailablePath;
+import Graphs.SuperNetwork;
 
 /**
  *

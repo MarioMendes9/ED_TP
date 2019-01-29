@@ -1,4 +1,4 @@
-package matriz_ad;
+package Graphs;
 
 /**
  * Execeçao para o caso de nao existir um caminho entre dois elementos

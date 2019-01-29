@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ed_tp;
+package User;
 
 import Heap.LinkedUnorderedList;
 import java.util.Objects;

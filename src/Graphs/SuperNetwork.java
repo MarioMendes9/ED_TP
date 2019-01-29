@@ -1,5 +1,5 @@
 
-package matriz_ad;
+package Graphs;
 
 import ArrayList.ArrayUnorderedList;
 import java.util.Iterator;
