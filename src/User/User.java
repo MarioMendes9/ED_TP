@@ -250,40 +250,8 @@ public class User {
      */
     @Override
     public String toString() {
-//        String s="{";
-//        for(Object ob:skills){
-//            if(ob!=null){
-//                s+=ob + ", ";
-//            }
-//        }       
-//        s=s.substring(0,s.length()-2);
-//        s+="}";
-//        String f="";
-//        for(Object ob:formacao){
-//            if(ob!=null){
-//                f+=ob.toString();
-//            }
-//        }
-//        String c="";
-//        for(Object ob:cargos){
-//            if(ob!=null){
-//                c+=ob.toString();
-//            }
-//        }
-//        String co="";
-//        for(Object ob:contacts){
-//            if((int)ob!=0){
-//                co+=ob +" ";
-//            }
-//        }
-//        String m="";
-//        for(Object ob:mencoes){
-//            if((int)ob!=0){
-//                m+=ob+" ";
-//            }
-//        }    
         
-        return "User{" + "id=" + id + "; idade=" + idade + "; nome=" + nome + "; email=" + email ;//+ "; skills=" + s + "; formacao=" + f + "; cargos=" + c + ";, contacts=" + co + "; mencoes=" + m + '}'+ "; visualizacoes=" + visualizacoes ;
+        return "User " + id + ": " + nome + ", " + email + ", " + idade +" anos, " +visualizacoes+" visualizações.";
     }
 
     /**
