@@ -142,6 +142,19 @@ public class LinkedList<T> implements ListADT<T> {
         return new LinkedIterator<T>(head, count, modcount);
     }
 
+    @Override
+    public String toString() {
+        String s="";
+        Node<T> n=head;
+        for(int i=0;i<count;i++){
+            s+=n.getElement().toString()+"\n";
+            n=n.getNext();
+        }
+        return s;
+    }
+    
+    
+
     private class LinkedIterator<T> implements Iterator<T> {
 
         private Node<T> current;

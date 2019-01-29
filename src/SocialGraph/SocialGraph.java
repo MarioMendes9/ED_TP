@@ -252,20 +252,37 @@ public class SocialGraph {
 
     public LinkedUnorderedList<User> usersWithSkill(String skill, User u) throws EmptyCollectionException {
         LinkedUnorderedList<User> list = new LinkedUnorderedList<>();
+        LinkedUnorderedList<User> list2 = new LinkedUnorderedList<>();
         LinkedUnorderedList<User> finallist = new LinkedUnorderedList<>();
 
         Object[] users = this.socialGraph.getVertices();
-        for (int j = 0; j < users.length; j++) {
+        for (int j = 0; j < socialGraph.size(); j++) {
             Iterator<String> i = ((User) users[j]).getSkills().iterator();
-            while (i.hasNext()) {
+            boolean add = false;
+            while (i.hasNext() && !add) {
                 String s = i.next();
                 if (s.equals(skill)) {
                     list.addToRear((User) (users[j]));
+                    add=true;
                 }
             }
-        }              
-        while (!list.isEmpty()) {
-            Iterator<User> i = list.iterator();
+        }
+        
+        //REMOVE OS QUE NAO TEM CAMINHO
+        Iterator<User> r=list.iterator();
+        while(r.hasNext()) {
+            User tempuser=r.next();
+            try {
+                socialGraph.shortestPathWeight(u, tempuser);
+                list2.addToRear(tempuser);
+                
+            } catch (NonAvailablePath ex) {
+                
+            }
+            
+        }
+        while (!list2.isEmpty()) {
+            Iterator<User> i = list2.iterator();
             double min = Double.MAX_VALUE;
             User usermin = null;
             while (i.hasNext()) {
@@ -277,16 +294,58 @@ public class SocialGraph {
                     }
                 } catch (NonAvailablePath ex) {
                     ex.getMessage();
+                    usermin=a;
+                    break;
                 }
                 
             }
-            finallist.addToFront(usermin); 
-            list.remove(usermin);
+            finallist.addToRear(usermin); 
+            list2.remove(usermin);
             
         }
         return finallist;
     }
 
+    public boolean enemyCompanies(String empresa1,String empresa2) {
+
+        Object[] users = socialGraph.getVertices();
+        
+        ArrayUnorderedList<User> workFirstEmpresa = new ArrayUnorderedList<>();
+        //Procurar utilizadores que trabalhem na empresa 1 
+        for (int i = 0; i < socialGraph.size(); i++) {
+            User tempUser= (User)users[i];
+            Iterator<CargosProfissionais> cargo=tempUser.getCargos().iterator();
+            
+            boolean add=false;
+            while(cargo.hasNext() && !add){
+                if(cargo.next().getEmpresa().equals(empresa1)){
+                    workFirstEmpresa.addToRear(tempUser);
+                    add=true;
+                }
+            }
+            
+        }
+        
+        Iterator<User> it=workFirstEmpresa.iterator();
+        
+        while(it.hasNext()){
+           Iterator<User> it2= socialGraph.iteratorBFS(it.next());
+            
+            while(it2.hasNext()){
+                User tempUser2=it2.next();
+                Iterator<CargosProfissionais> cargos=tempUser2.getCargos().iterator();
+                while(cargos.hasNext()){
+                    if(cargos.next().getEmpresa().equals(empresa2 )){
+                        return true;
+                    }
+                }
+            }
+                    
+        }
+        
+        
+        return false;
+    }
     public void print() {
         socialGraph.printmatriz();
     }
