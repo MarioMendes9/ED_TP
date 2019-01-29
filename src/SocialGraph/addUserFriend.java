@@ -48,6 +48,12 @@ public class addUserFriend extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Email User2:");
 
+        firstUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstUserActionPerformed(evt);
+            }
+        });
+
         secondUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 secondUserActionPerformed(evt);
@@ -86,7 +92,7 @@ public class addUserFriend extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -120,6 +126,10 @@ public class addUserFriend extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Um dos utilizadores nao existe");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void firstUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_firstUserActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

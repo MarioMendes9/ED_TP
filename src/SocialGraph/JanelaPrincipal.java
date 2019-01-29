@@ -31,8 +31,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         User user1 = new User(1, 23, "Mário", "mario@hotmail.com", 1);
         User user2 = new User(2, 23, "Mário", "jorge@hotmail.com", 2);
+        user2.addSkill("Java");
         social.addUser(user1);
         social.addUser(user2);
+        try {
+            social.addUserFriend(user1.getEmail(), user2.getEmail());
+        } catch (ElementNotFoundException ex) {
+           
+        }
     }
 
     
@@ -129,6 +135,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/group_link.png"))); // NOI18N
         jMenu2.setText("Graph");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/zoom.png"))); // NOI18N
         jMenuItem2.setText("SearchUser");
@@ -157,6 +168,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setText("CanMeet");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuItem7.setText("FastFriends");
@@ -167,7 +183,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem7);
 
-        jMenuItem8.setText("8");
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/148602-200.png"))); // NOI18N
+        jMenuItem8.setText("EnemyCompanies");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem8);
 
         jMenuItem9.setText("9");
@@ -178,7 +200,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem9);
 
-        jMenuItem10.setText("10");
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/friends.png"))); // NOI18N
+        jMenuItem10.setText("UserWithSkills");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
@@ -206,7 +229,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+        // TODO dd your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -218,7 +241,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        // TODO add your handling code here:
+        UserWithSkills us=new UserWithSkills(social);
+         jDesktopPane1.add(us);
+         us.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
     /**
      * Botao de remove user
@@ -346,7 +371,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-
+       
         addUserFriend addFriends = new addUserFriend(social);
         jDesktopPane1.add(addFriends);
         addFriends.setVisible(true);
@@ -368,6 +393,20 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Grafo nao completo");
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        EnemyCompanies ene=new EnemyCompanies(social);
+        jDesktopPane1.add(ene);
+        ene.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
