@@ -41,6 +41,7 @@ public class UserWithSkills extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("UsersWithSkill");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userskills.png"))); // NOI18N

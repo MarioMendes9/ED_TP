@@ -42,6 +42,7 @@ public class EnemyCompanies extends javax.swing.JInternalFrame {
 
         label1.setText("label1");
 
+        setClosable(true);
         setTitle("EnemyCompanies");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
