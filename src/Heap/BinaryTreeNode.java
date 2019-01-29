@@ -7,8 +7,20 @@ package Heap;
  */
 public class BinaryTreeNode<T> {
 
+    /**
+     * Valor do nó
+     */
     protected T element;
-    protected BinaryTreeNode<T> left, right;
+
+    /**
+     * Proximo elemento left
+     */
+    protected BinaryTreeNode<T> left,
+
+    /**
+     * proximo elemento right
+     */
+    right;
 
     /**
      * Creates a new tree node with the specified data.

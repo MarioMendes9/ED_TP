@@ -5,12 +5,28 @@ import java.util.Iterator;
 /**
  * Classe que representa uma double linked list com dois nos sentinela
  *
+ * @param <T> valor generico de dados
  */
 public class DoubleLinkedList<T> implements ListADT<T> {
 
+    /**
+     * No inicial
+     */
     protected LinearNode<T> head;
+
+    /**
+     * No final
+     */
     protected LinearNode<T> tail;
+
+    /**
+     * Numero de nos
+     */
     protected int count;
+
+    /**
+     * Numero de operaçoes 
+     */
     protected int n_oper;
 
     /**

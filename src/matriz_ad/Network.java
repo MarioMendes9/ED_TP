@@ -14,7 +14,9 @@ import java.util.Iterator;
  */
 public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
-    //private final int DEFAULT_WEIGHT = 0;
+    /**
+     * Matrix de adjacencia
+     */
     protected double[][] adjMatrix;    // adjacency matrix=Matriz com os pesos das arestas
 
     /**
@@ -105,10 +107,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
     }
 
     /**
+     * Método para adicionar uma arestas
      *
-     * @param index1
-     * @param index2
-     * @param weight
+     * @param index1 primeiro vertice
+     * @param index2 segundo vertice
+     * @param weight peso do vertice
      */
     public void addEdge(int index1, int index2, double weight) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
@@ -117,11 +120,24 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
     }
 
+    /**
+     * Método responsavel por adicionar uma arestas
+     *
+     * @param vertex1 primeiro vertice
+     * @param vertex2 segundo vertice
+     * @param weight peso da arestas
+     */
     @Override
     public void addEdge(T vertex1, T vertex2, double weight) {
         addEdge(getIndex(vertex1), getIndex(vertex2), weight);
     }
 
+    /**
+     * Método responsavel por remover uma arestas
+     *
+     * @param index1 primeiro vertice
+     * @param index2 segundo vertice
+     */
     @Override
     public void removeEdge(int index1, int index2) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
@@ -130,6 +146,14 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         }
     }
 
+    /**
+     * Método responsavel por retornar o caminho mais curto entre dois vertices
+     *
+     * @param startVertex primeiro vertice
+     * @param targetVertex segundo vertice
+     * @return iterator com o caminho mais curto
+     * @throws NonAvailablePath senao existe caminho
+     */
     @Override
     public Iterator<T> iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath {
 
@@ -137,6 +161,14 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
                 getIndex(targetVertex));
     }
 
+    /**
+     * Método responsavel por retornar o caminho mais curto entre dois vertices
+     *
+     * @param startIndex vertice inicial
+     * @param targetIndex vertice final
+     * @return iterator com o caminho mais curto
+     * @throws NonAvailablePath senao existir caminho
+     */
     @Override
     public Iterator iteratorShortestPath(int startIndex, int targetIndex) throws NonAvailablePath {
         Integer x = 0;
@@ -213,6 +245,14 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     }
 
+    /**
+     * Método responsavel por retornar o caminho mais curto
+     *
+     * @param vertex1 vertice inicial
+     * @param vertex2 vertice final
+     * @return iterator com o caminho mais curto
+     * @throws NonAvailablePath caso nao exista caminho
+     */
     @Override
     public double shortestPathWeight(T vertex1, T vertex2) throws NonAvailablePath {
 
@@ -220,6 +260,12 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     }
 
+    /**
+     * Método reponsavel por retornar o custo do caminho
+     *
+     * @param list conjunto de vertices numa lista
+     * @return o custo do caminho
+     */
     public double getPathWeight(UnorderedListADT<T> list) {
         double sum = 0;
         T var1 = list.removeFirst();
@@ -234,6 +280,12 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     }
 
+    /**
+     * Método responsavel por retonar o custo de uma caminho
+     *
+     * @param i iterator com a travessia
+     * @return custo da travessia
+     */
     public double getPathWeight(Iterator i) {
         ArrayUnorderedList<T> sum = new ArrayUnorderedList<>();
         while (i.hasNext()) {
@@ -242,6 +294,9 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return this.getPathWeight(sum);
     }
 
+    /**
+     * Método para aumentar a capacidade da coleçao
+     */
     @Override
     protected void expandCapacity() {
         double[][] adjMatrix2 = new double[this.numVertices * 2][this.numVertices * 2];
@@ -264,6 +319,12 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     }
 
+    /**
+     * Método responsavel por retornar o iteratorDFS
+     *
+     * @param startIndex vertice inicial
+     * @return iterator dfs
+     */
     @Override
     public Iterator<T> iteratorDFS(int startIndex) {
         Integer x = null;
@@ -316,6 +377,13 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return resultList.iterator();
     }
 
+    /**
+     * Método responsavel por retornar o iterator DFS
+     *
+     * @param startIndex vertice inicial
+     * @return iterator DFS
+     */
+
     @Override
     public Iterator<T> iteratorBFS(int startIndex) {
         Integer x = null;
@@ -357,6 +425,9 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return resultList.iterator();
     }
 
+    /**
+     * Era so de teste....
+     */
     @Override
     public void printmatriz() {
         for (int i = 0; i < this.numVertices; i++) {
@@ -376,6 +447,11 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
     }
 
+    /**
+     * Método responsavel por criar e retornar um mstNetwork
+     *
+     * @return uma network
+     */
     public Network mstNetwork() {
         int x, y;
         int index;
@@ -454,6 +530,12 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return resultGraph;
     }
 
+    /**
+     * Método auxilir para a construçao da mstNetwork 
+     * @param weight custo
+     * @param visited conjunto de vertices que ja foram visistados 
+     * @return custo 
+     */
     protected int[] getEdgeWithWeightOf(double weight, boolean[] visited) {
         int[] edge = new int[2];
         for (int i = 0; i < numVertices; i++) {
@@ -474,6 +556,4 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         return edge;
     }
 
-        
-    
 }

@@ -45,7 +45,6 @@ public class LinkedQueue<T> implements QueueADT<T> {
      * Remove um elemento da coleçao
      *
      * @return elemento removido
-     * @throws LinkedQueue.EmptyCollectionException caso a coleçao esteja vazia
      */
     @Override
     public T dequeue() throws EmptyQueueException {
@@ -68,7 +67,6 @@ public class LinkedQueue<T> implements QueueADT<T> {
      * Método responsavel por retornar o primeiro elemento
      *
      * @return primeiro elemento
-     * @throws LinkedQueue.EmptyCollectionException se a coleçao estiver vazia
      */
     @Override
     public T first() throws EmptyQueueException {

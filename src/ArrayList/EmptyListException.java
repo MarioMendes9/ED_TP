@@ -6,6 +6,9 @@ package ArrayList;
  */
 public class EmptyListException extends Exception {
 
+    /**
+     * Construtor para esta execeçao 
+     */
     public EmptyListException() {
         super("Coleçao vazia");
     }

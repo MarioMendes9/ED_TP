@@ -1,4 +1,3 @@
-
 package matriz_ad;
 
 import LinkedStack.LinkedStack;
@@ -14,9 +13,24 @@ import java.util.Iterator;
  */
 public class Graph<T> implements GraphADT<T> {
 
+    /**
+     * Capacidade default
+     */
     protected final int DEFAULT_CAPACITY = 5;
+
+    /**
+     * Numero de vertices do grafo
+     */
     protected int numVertices; // number of vertices in the graph
+
+    /**
+     * Matriz de adjacencia
+     */
     protected boolean[][] adjMatrix; // adjacency matrix
+
+    /**
+     * Conjunto de vertices
+     */
     protected T[] vertices; // values of vertices
 
     /**
@@ -52,6 +66,12 @@ public class Graph<T> implements GraphADT<T> {
         }
     }
 
+    /**
+     * Método responsavel por retornar o index de um nó
+     *
+     * @param vertex que se procura
+     * @return indice do vertice
+     */
     public int getIndex(T vertex) {
         int n = -1;
         for (int i = 0; i < vertices.length; i++) {
@@ -83,6 +103,11 @@ public class Graph<T> implements GraphADT<T> {
 
     }
 
+    /**
+     * Método responsavel por remover um vertice da coleçao
+     *
+     * @param vertex a remover
+     */
     @Override
     public void removeVertex(T vertex) {
         int k = this.getIndex(vertex);
@@ -128,6 +153,12 @@ public class Graph<T> implements GraphADT<T> {
 
     }
 
+    /**
+     * Método responsavel por remover uma arestas
+     *
+     * @param index1 primeiro vertice
+     * @param index2 segundo vertice
+     */
     public void removeEdge(int index1, int index2) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = false;
@@ -140,6 +171,13 @@ public class Graph<T> implements GraphADT<T> {
         removeEdge(getIndex(vertex1), getIndex(vertex2));
     }
 
+    /**
+     * Returns an iterator that performs a breadth first search traversal
+     * starting at the given index.
+     *
+     * @param startVertex the start vertex
+     * @return an iterator that performs a breadth first traversal
+     */
     public Iterator<T> iteratorBFS(T startVertex) {
         return iteratorBFS(getIndex(startVertex));
     }
@@ -187,6 +225,13 @@ public class Graph<T> implements GraphADT<T> {
         return resultList.iterator();
     }
 
+    /**
+     * Returns an iterator that performs a depth first search traversal starting
+     * at the given index.
+     *
+     * @param startVertex vertice inicial
+     * @return an iterator that performs a depth first traversal
+     */
     public Iterator<T> iteratorDFS(T startVertex) {
         return iteratorDFS(getIndex(startVertex));
     }
@@ -239,7 +284,7 @@ public class Graph<T> implements GraphADT<T> {
                     traversalStack.pop();
                 } catch (EmptyQueueException ex) {
                     System.out.println(ex.getMessage());
-                       
+
                 }
             }
         }
@@ -247,12 +292,20 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     @Override
-    public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath{
+    public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath {
         return iteratorShortestPath(getIndex(startVertex), getIndex(targetVertex));
     }
-    
-    public Iterator iteratorShortestPath(int startVertex, int targetVertex) throws NonAvailablePath{
-           Integer x = 0;
+
+    /**
+     * Método responsavel por retornar o caminho mais curto entre dois vertices
+     *
+     * @param startVertex vertice inicial
+     * @param targetVertex vertice final
+     * @return iterator que contem o caminho mais curto
+     * @throws NonAvailablePath senao existir caminho
+     */
+    public Iterator iteratorShortestPath(int startVertex, int targetVertex) throws NonAvailablePath {
+        Integer x = 0;
         ArrayUnorderedList<T> resultShortList = new ArrayUnorderedList<>();
         //Inicializa o vetor de visitados
         Boolean[] visited = new Boolean[this.numVertices];
@@ -260,7 +313,7 @@ public class Graph<T> implements GraphADT<T> {
             visited[i] = false;
 
         }
-        int [] cost = new int[this.numVertices];
+        int[] cost = new int[this.numVertices];
         //Inicia o vetor de custo 
         for (int i = 0; i < cost.length; i++) {
             cost[i] = Integer.MAX_VALUE;
@@ -295,7 +348,7 @@ public class Graph<T> implements GraphADT<T> {
             visited[x] = true;
 
             for (int i = 0; i < numVertices; i++) {
-                if ((adjMatrix[x.intValue()][i] ==true) && !visited[i]) {
+                if ((adjMatrix[x.intValue()][i] == true) && !visited[i]) {
                     if (cost[i] > costTemp + +1) {
                         lastVertice[i] = x;
                         cost[i] = costTemp + +1;
@@ -325,13 +378,21 @@ public class Graph<T> implements GraphADT<T> {
         return resultShortList.iterator();
     }
 
-    
-    
+    /**
+     * Método responsavel por retornar se a coleçao esta ou nao vazia
+     *
+     * @return True caso sim, false caso contrario
+     */
     @Override
     public boolean isEmpty() {
         return (numVertices == 0);
     }
 
+    /**
+     * Método responsavel por retornar se o grafo é ou nao conexo
+     *
+     * @return
+     */
     @Override
     public boolean isConnected() {
         if (isEmpty()) {
@@ -348,11 +409,19 @@ public class Graph<T> implements GraphADT<T> {
         return (count == numVertices);
     }
 
+    /**
+     * Método responsavel por retornar o numero de vertices
+     *
+     * @return numero de vertices
+     */
     @Override
     public int size() {
         return this.numVertices;
     }
 
+    /**
+     * Método para aumentar a capacidade da coleçao
+     */
     protected void expandCapacity() {
         boolean[][] adjMatrix2 = new boolean[this.numVertices * 2][this.numVertices * 2];
 
@@ -373,10 +442,28 @@ public class Graph<T> implements GraphADT<T> {
 
     }
 
+    /**
+     * Método responsavel por verificar se um index é valido
+     *
+     * @param index para verificar
+     * @return true caso sim, falso caso contrario
+     */
     public boolean indexIsValid(int index) {
         return (index < this.vertices.length && index >= 0);
     }
 
+    /**
+     * Método responsavel por retornar o conjunto de vertices
+     *
+     * @return conjunto de vertices do grafo
+     */
+    public T[] getVertices() {
+        return vertices;
+    }
+
+    /**
+     * chouriço
+     */
     public void printmatriz() {
         for (int i = 0; i < this.numVertices; i++) {
             for (int j = 0; j < this.numVertices; j++) {
@@ -386,10 +473,4 @@ public class Graph<T> implements GraphADT<T> {
         }
 
     }
-
-    public T[] getVertices() {
-        return vertices;
-    }
-    
-    
 }

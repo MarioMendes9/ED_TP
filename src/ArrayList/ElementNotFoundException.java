@@ -6,6 +6,9 @@ package ArrayList;
  */
 public class ElementNotFoundException extends Exception {
 
+    /**
+     * Constutor para esta exceçao 
+     */
     public ElementNotFoundException() {
         super("Elemento nao existe");
     }

@@ -5,6 +5,9 @@ package LinkedQueue;
  */
 public class EmptyQueueException extends Exception {
 
+    /**
+     * Construtor para esta execeçao 
+     */
     public EmptyQueueException() {
         super("Coleçao vazia");
     }

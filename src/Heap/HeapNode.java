@@ -7,6 +7,9 @@ package Heap;
  */
 public class HeapNode<T> extends BinaryTreeNode<T> {
 
+    /**
+     * Representaçao do parent 
+     */
     protected HeapNode<T> parent;
 
     /**

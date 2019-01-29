@@ -42,7 +42,7 @@ public class LinkedStack<T> implements StackADT<T> {
     /**
      * Método responsavel por remover um elemento da coleçao
      *
-     * @return
+     * @return retornar o primeiro elemento 
      */
     @Override
     public T pop() throws EmptyQueueException {

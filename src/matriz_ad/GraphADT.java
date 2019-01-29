@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package matriz_ad;
 
 import java.util.Iterator;
 
 /**
- *
- * 
- */
-/**
  * GraphADT defines the interface to a graph data structure.
  *
- * @param <T>
+ * @param <T> tipo generico de dados
  */
 public interface GraphADT<T> {
 

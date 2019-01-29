@@ -39,6 +39,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Returns a reference to the first element in this list.
      *
      * @return a reference to the first element in this list
+     * @throws Heap.EmptyCollectionException caso a coleçao esteja vazia
      */
     public T first() throws EmptyCollectionException;
 
@@ -46,6 +47,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Returns a reference to the last element in this list.
      *
      * @return a reference to the last element in this list
+     * @throws Heap.EmptyCollectionException caso a coleçao esteja vazia
      */
     public T last() throws EmptyCollectionException;
 

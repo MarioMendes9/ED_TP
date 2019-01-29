@@ -6,6 +6,9 @@ package matriz_ad;
  */
 public class EmptyException extends Exception {
 
+    /**
+     * Construtor para esta execeçao 
+     */
     public EmptyException() {
         super("Coleçao em questao esta vazia");
     }

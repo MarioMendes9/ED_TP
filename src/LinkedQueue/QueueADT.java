@@ -1,9 +1,8 @@
 package LinkedQueue;
 
 /**
- *
- * @author User
- * @param <T>
+ * Interface para implmentar uma Queue
+ * @param <T> tipo generico de dados 
  */
 public interface QueueADT<T> {
 
@@ -18,7 +17,7 @@ public interface QueueADT<T> {
      * Removes and returns the element at the front of this queue.
      *
      * @return the element at the front of this queue
-     * @throws LinkedQueue.EmptyCollectionException caso a coleçao esteja vazia
+     * @throws LinkedQueue.EmptyQueueException caso a queue esteja vazia 
      */
     public T dequeue() throws EmptyQueueException;
 
@@ -26,7 +25,7 @@ public interface QueueADT<T> {
      * Returns without removing the element at the front of this queue.
      *
      * @return the first element in this queue
-     * @throws LinkedQueue.EmptyCollectionException se a coleçao estiver vazia
+     * @throws LinkedQueue.EmptyQueueException caso a queue esteja vazia 
      */
     public T first() throws EmptyQueueException;
 

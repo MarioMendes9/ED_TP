@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * Implementaçao de um LinearNode
+ * @param <T> tipo generico de dados
  */
 public class LinearNode<T> {
 

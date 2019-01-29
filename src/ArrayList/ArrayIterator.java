@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 /**
  * Iterador para os elementos de um array
  *
+ * @param <T> tipo generido de dados 
  */
 public class ArrayIterator<T> implements Iterator<T> {
 

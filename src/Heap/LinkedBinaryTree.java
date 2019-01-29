@@ -10,8 +10,14 @@ import java.util.Iterator;
  */
 public class LinkedBinaryTree<T> implements BinaryTreeADT<T> {
 
+    /**
+     * Numero de nós
+     */
     protected int count;
 
+    /**
+     * No inicial
+     */
     protected BinaryTreeNode<T> root;
 
     /**

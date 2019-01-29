@@ -1,27 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package matriz_ad;
 
 import ArrayList.ArrayUnorderedList;
 import java.util.Iterator;
 
 /**
- *
- * @author dani_
+ * Classe que representaçao uma super Network 
+ * @param <T> tipo generido de dados 
  */
 public class SuperNetwork<T> extends Network<T> {
 
+    /**
+     * Construtor para a classe super network 
+     */
     public SuperNetwork() {
         super();
     }
 
+    /**
+     * Iterator caminho mais curto por numero de arestas para esta classe 
+     * @param startVertex vertice inicial 
+     * @param targetVertex vertice final 
+     * @return iterator com o conjunto de vertices 
+     * @throws NonAvailablePath se nao existir caminho 
+     */
     public Iterator iteratorShortestPathEdges(T startVertex, T targetVertex) throws NonAvailablePath {
         return iteratorShortestPathEdges(getIndex(startVertex), getIndex(targetVertex));
     }
 
+     /**
+     * Iterator caminho mais curto por numero de arestas para esta classe 
+     * @param startVertex vertice inicial 
+     * @param targetVertex vertice final 
+     * @return iterator com o conjunto de vertices 
+     * @throws NonAvailablePath se nao existir caminho 
+     */
+    
     public Iterator iteratorShortestPathEdges(int startVertex, int targetVertex) throws NonAvailablePath {
         Integer x = 0;
         ArrayUnorderedList<T> resultShortList = new ArrayUnorderedList<>();
@@ -96,6 +110,12 @@ public class SuperNetwork<T> extends Network<T> {
         return resultShortList.iterator();
     }
 
+    /**
+     * Método para verificar se dois vertices estao ligados
+     * @param u1 primeiro vertice 
+     * @param u2 segundo vertice 
+     * @return true caso esteja, false caso contrario 
+     */
     public boolean areConnected(T u1, T u2) {
         return (adjMatrix[getIndex(u1)][getIndex(u2)] > 0);
     }

@@ -6,6 +6,9 @@ package matriz_ad;
  */
 public class NonAvailablePath extends Exception{
 
+    /**
+     * Construtor para esta execeçao 
+     */
     public NonAvailablePath() {
         super("Nao existe um caminho entre estes dois elementos");
     }

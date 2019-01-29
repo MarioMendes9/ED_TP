@@ -12,7 +12,14 @@ import java.util.Iterator;
  */
 public class ArrayList<T> implements ListADT<T> {
 
+    /**
+     * Array da lista 
+     */
     protected T[] array;
+
+    /**
+     * Proximo lugar a adicionar 
+     */
     protected int rear;
     private final int DEFAULT_CAPACITY = 10;
 
@@ -102,6 +109,7 @@ public class ArrayList<T> implements ListADT<T> {
     /**
      * Método responsavel por retornar o primeiro elemento da coleçao
      * @return o primeiro elemento da coleçao
+     * @throws ArrayList.EmptyListException se a coleçao estiver vazia 
      */
     @Override
     public T first() throws EmptyListException{
@@ -116,6 +124,7 @@ public class ArrayList<T> implements ListADT<T> {
     /**
      * Método responsavel por retornar o ultimo elemento da coleçao
      * @return ultimo elemento da coleçao 
+     * @throws ArrayList.EmptyListException se a coleçao estiver vazia 
      */
     @Override
     public T last() throws EmptyListException {

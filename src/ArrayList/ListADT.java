@@ -2,6 +2,10 @@ package ArrayList;
 
 import java.util.Iterator;
 
+/**
+ * Interface para implementar uma Lista 
+ * @param <T> tipo generico de dados
+ */
 public interface ListADT<T> extends Iterable<T> {
 
     /**
@@ -15,7 +19,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Removes and returns the last element from this list.
      *
      * @return the last element from this list
-     * @throws ArrayList.EmptyCollectionException empty collection
+     * @throws ArrayList.EmptyListException caso esteja vazia 
      */
     public T removeLast() throws EmptyListException;
 
@@ -23,6 +27,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Removes and returns the specified element from this list.
      *
      * @param element the element to be removed from the list
+     * @return  elemento removido 
      * @throws ArrayList.ElementNotFoundException element not found
      */
     public T remove(T element) throws ElementNotFoundException;
@@ -31,7 +36,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Returns a reference to the first element in this list.
      *
      * @return a reference to the first element in this list
-     * @throws ArrayList.EmptyCollectionException se a coleçao estiver vazia
+     * @throws ArrayList.EmptyListException caso esteja vazia 
      */
     public T first() throws EmptyListException;
 
@@ -39,7 +44,7 @@ public interface ListADT<T> extends Iterable<T> {
      * Returns a reference to the last element in this list.
      *
      * @return a reference to the last element in this list
-     * @throws ArrayList.EmptyCollectionException se a coleçao estiver vazia
+     * @throws ArrayList.EmptyListException caso esteja vazia 
      */
     public T last() throws EmptyListException;
 
