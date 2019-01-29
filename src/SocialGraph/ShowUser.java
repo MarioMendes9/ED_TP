@@ -5,7 +5,7 @@
  */
 package SocialGraph;
 
-import ed_tp.User;
+import User.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

@@ -1,10 +1,9 @@
 package SocialGraph;
 
 import ArrayList.ArrayUnorderedList;
-import ed_tp.User;
+import User.*;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import matriz_ad.NonAvailablePath;
 
 /**
  *  Janela para o ShortPath

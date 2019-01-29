@@ -5,7 +5,7 @@
  */
 package SocialGraph;
 
-import ed_tp.User;
+import User.*;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 

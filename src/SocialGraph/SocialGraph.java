@@ -4,11 +4,11 @@ import ArrayList.ArrayUnorderedList;
 import Heap.EmptyCollectionException;
 import Heap.LinkedUnorderedList;
 import ArrayList.*;
-import ed_tp.CargosProfissionais;
-import ed_tp.User;
+import Graphs.*;
+import User.CargosProfissionais;
+import User.User;
 import java.util.Iterator;
-import matriz_ad.NonAvailablePath;
-import matriz_ad.SuperNetwork;
+
 
 /**
  *

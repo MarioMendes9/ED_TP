@@ -5,10 +5,12 @@
  */
 package SocialGraph;
 
-import ed_tp.User;
+
+import Graphs.*;
+import User.User;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import matriz_ad.NonAvailablePath;
+
 
 /**
  *  Janela para o ShortPath
@@ -137,10 +139,10 @@ public class ShortPath extends javax.swing.JInternalFrame {
              jTextField1.setText(""+social.getcustoShortPath(first, second));
             textArea1.setText(s);
            
-        } catch (NonAvailablePath | ElementNotFoundException ex) {
+        } catch (ElementNotFoundException | NonAvailablePath ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

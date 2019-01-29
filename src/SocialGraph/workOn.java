@@ -5,10 +5,10 @@
  */
 package SocialGraph;
 
-import ed_tp.User;
+import User.*;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
-import matriz_ad.NonAvailablePath;
+import Graphs.*;
 
 /**
  *  Janela para o ShortPath

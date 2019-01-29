@@ -5,7 +5,7 @@
  */
 package SocialGraph;
 
-import ed_tp.User;
+import User.User;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;

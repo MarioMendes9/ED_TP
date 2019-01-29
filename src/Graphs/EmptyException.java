@@ -1,4 +1,4 @@
-package matriz_ad;
+package Graphs;
 
 /**
  * Exceçao no caso de encontrar uma coleçao vazia

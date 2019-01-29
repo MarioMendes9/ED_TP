@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ed_tp;
+package SocialGraph;
 
+import User.CargosProfissionais;
+import User.FormacaoAcademica;
+import User.User;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;

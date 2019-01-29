@@ -1,4 +1,4 @@
-package matriz_ad;
+package Graphs;
 
 import java.util.Iterator;
 
@@ -63,7 +63,7 @@ public interface GraphADT<T> {
      * @param targetVertex the ending vertex
      * @return an iterator that contains the shortest path between the two
      * vertices
-     * @throws matriz_ad.NonAvailablePath se nao existir um caminho entre eles
+     * @throws Graphs.NonAvailablePath se nao existir um caminho entre eles
      */
     public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws NonAvailablePath;
 
