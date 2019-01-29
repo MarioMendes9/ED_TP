@@ -66,7 +66,7 @@ public class SocialGraph {
                         Iterator it = socialGraph.iteratorShortestPathEdges(i, j);
                         int n = 0;
                         while (it.hasNext()) {
-                            System.out.println(it.next());
+                            it.next();
                             n++;
 
                         }
@@ -142,7 +142,7 @@ public class SocialGraph {
                 int count = 0;
                 while (it.hasNext()) {
                     count++;
-                    System.out.println(it.next());
+                    it.next();
                 }
 
                 if (count <= 3) {
@@ -196,7 +196,7 @@ public class SocialGraph {
                 int count = 0;
                 while (it.hasNext()) {
                     count++;
-                    System.out.println(it.next());
+                    it.next();
                 }
 
                 if (count <= 3) {
@@ -250,7 +250,8 @@ public class SocialGraph {
 
     }
 
-    public LinkedUnorderedList<User> usersWithSkill(String skill, User u) throws EmptyCollectionException {
+    public LinkedUnorderedList<User> usersWithSkill(String skill, String email) throws EmptyCollectionException, ElementNotFoundException {
+        User u=searchUser(email);
         LinkedUnorderedList<User> list = new LinkedUnorderedList<>();
         LinkedUnorderedList<User> list2 = new LinkedUnorderedList<>();
         LinkedUnorderedList<User> finallist = new LinkedUnorderedList<>();
@@ -293,12 +294,11 @@ public class SocialGraph {
                         usermin=a;
                     }
                 } catch (NonAvailablePath ex) {
-                    ex.getMessage();
                     usermin=a;
                     break;
                 }
                 
-            }
+            }           
             finallist.addToRear(usermin); 
             list2.remove(usermin);
             
@@ -336,7 +336,7 @@ public class SocialGraph {
                 Iterator<CargosProfissionais> cargos=tempUser2.getCargos().iterator();
                 while(cargos.hasNext()){
                     if(cargos.next().getEmpresa().equals(empresa2 )){
-                        return true;
+                        return false;
                     }
                 }
             }
@@ -344,7 +344,7 @@ public class SocialGraph {
         }
         
         
-        return false;
+        return true;
     }
     public void print() {
         socialGraph.printmatriz();

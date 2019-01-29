@@ -7,6 +7,7 @@ package SocialGraph;
 
 import Heap.EmptyCollectionException;
 import ArrayList.ArrayUnorderedList;
+import ArrayList.EmptyListException;
 import Heap.UnorderedListADT;
 import ed_tp.User;
 import java.util.Iterator;
@@ -25,47 +26,59 @@ public class teste {
     public static void main(String[] args) {
         //JanelaPrincipal j= new JanelaPrincipal();
         SocialGraph social = new SocialGraph();
-        User user1 = new User(1, 10, "Mario", "mario@mm.mmm", 2);
-        User user2 = new User(2, 10, "jorge", "jorge@mmm.mmm", 3);
-        User user3 = new User(3, 10, "Mendes", "mendes@mmm.mmm", 4);
-        User user4 = new User(4, 10, "leite", "leite@mmm.mmn", 5);
-        User user5 = new User(5, 10, "lei", "lei@mmm.mmm", 6);
+        User user1 = new User(1, 10, "A", "a@mmm.mmm", 2);
+        User user2 = new User(2, 10, "B", "b@mmm.mmm", 3);
+        User user3 = new User(3, 10, "C", "c@mmm.mmm", 4);
+        User user4 = new User(4, 10, "D", "d@mmm.mmm", 5);
+        User user5 = new User(5, 10, "E", "e@mmm.mmm", 1);
+        User user6 = new User(6, 10, "M", "m@mmm.mmm", 2);
+      //  User user7 = new User(5, 10, "g", "g@mmm.mmm", 2);
         user1.addSkill("java");
         user2.addSkill("java");
+       
         user3.addSkill("java");
-        user4.addSkill("java");
+        user4.addSkill("netbeans");
         user5.addSkill("java");
-        User user6 = new User(6, 10, "babo", "babo@l.lsd", 1);
-        User user7 = new User(7, 10, "sete", "sete@l.lsd", 1);
-        User user8 = new User(8, 10, "oito", "oito@l.lsd", 1);
+        user6.addSkill("java");
+      //  user7.addSkill("java");
+      user1.addCargo(200, "dev", "estg");
+      user2.addCargo(200, "dev", "estg");    
+      user6.addCargo(200, "dev", "estg");
+      user5.addCargo(200, "dev", "es");
+      user3.addCargo(200, "dev", "estg");
+      user4.addCargo(200, "dev", "estg");
+      
+      
+      
 
         social.addUser(user1);
         social.addUser(user2);
         social.addUser(user3);
         social.addUser(user4);
         social.addUser(user5);
-//        social.addUser(user6);
-//        social.addUser(user7);
+        social.addUser(user6);
+      //  social.addUser(user7);
 //        social.addUser(user8);
         
-
+        
         try {
-            social.addUserFriend("jorge@mmm.mmm", "mendes@mmm.mmm");
-            social.addUserFriend("mario@mm.mmm", "leite@mmm.mmn");
-             social.addUserFriend("jorge@mmm.mmm", "lei@mmm.mmm");
-            social.addUserFriend("mendes@mmm.mmm", "lei@mmm.mmm");         
-            social.addUserFriend("mario@mm.mmm", "jorge@mmm.mmm");           
+            social.addUserFriend("a@mmm.mmm", "m@mmm.mmm");
+            social.addUserFriend("m@mmm.mmm", "c@mmm.mmm");
+             social.addUserFriend("c@mmm.mmm", "d@mmm.mmm");
+            social.addUserFriend("a@mmm.mmm", "b@mmm.mmm");         
+//            social.addUserFriend("b@mmm.mmm", "d@mmm.mmm");           
+//            social.addUserFriend("f@mmm.mmm", "g@mmm.mmm");           
+//            social.addUserFriend("b@mmm.mmm", "f@mmm.mmm");  
            
-           Iterator<User> it= social.usersWithSkill("java", user1).iterator();
-            System.out.println("IMPRIMIR");
-           while(it.hasNext()){
-               User aa=it.next();
-               System.out.println(aa.getNome());
-           }          
-        } catch (ElementNotFoundException ex) {
+            System.out.println(social.enemyCompanies("es", "estg"));
+           
+        }catch (ElementNotFoundException ex) {
             System.out.println(ex.getMessage());
-        } catch (EmptyCollectionException ex) {
-            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
         }
+       // social.print();
+     //   System.out.println(social.completo());
+        
+        
     }
+    
 }

@@ -239,9 +239,6 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         while (i.hasNext()) {
             sum.addToRear((T) i.next());
         }
-
-        System.out.println(sum.toString());
-
         return this.getPathWeight(sum);
     }
 
