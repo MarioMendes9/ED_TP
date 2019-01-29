@@ -29,23 +29,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         initComponents();
         social = new SocialGraph();
 
-        User user1 = new User(1, 23, "Mário", "mario@hotmail.com", 1);
-        User user2 = new User(2, 23, "Mário", "jorge@hotmail.com", 2);
-        User user3 = new User(3, 23, "Mário", "jorge@hotmail.com", 2);
-        user1.addFormacao(1999, "Estg");
-        user1.addFormacao(1999, "baixo");
-        user1.addCargo(1999, "REI", "XDD");
-        user1.addCargo(1999, "REASDI", "XDD");
-        user1.addCargo(1999, "REIASD", "XDD");
-        user1.addCargo(1999, "REWWEWEWI", "XDD");
-        user1.addContact(3);
-        user1.addContact(2);
-        user1.addMencao(1);
-        user1.addMencao(2);
-        
-        
-        social.addUser(user1);
-        social.addUser(user2);
+     
     }
 
     
