@@ -67,7 +67,7 @@ public class FormacaoAcademica {
      */
     @Override
     public String toString() {
-        return "{" + "ano=" + ano + ", formacao=" + formacao + '}';
+        return "Ano=" + ano + ", formacao=" + formacao;
     }
     
     

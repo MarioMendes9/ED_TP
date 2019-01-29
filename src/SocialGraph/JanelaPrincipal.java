@@ -31,6 +31,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         User user1 = new User(1, 23, "Mário", "mario@hotmail.com", 1);
         User user2 = new User(2, 23, "Mário", "jorge@hotmail.com", 2);
+        User user3 = new User(3, 23, "Mário", "jorge@hotmail.com", 2);
+        user1.addFormacao(1999, "Estg");
+        user1.addFormacao(1999, "baixo");
+        user1.addCargo(1999, "REI", "XDD");
+        user1.addCargo(1999, "REASDI", "XDD");
+        user1.addCargo(1999, "REIASD", "XDD");
+        user1.addCargo(1999, "REWWEWEWI", "XDD");
+        user1.addContact(3);
+        user1.addContact(2);
+        user1.addMencao(1);
+        user1.addMencao(2);
+        
+        
         social.addUser(user1);
         social.addUser(user2);
     }
@@ -72,11 +85,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGap(0, 1279, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 679, Short.MAX_VALUE)
+            .addGap(0, 833, Short.MAX_VALUE)
         );
 
         jMenuBar1.setToolTipText("");
@@ -194,11 +207,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -336,7 +353,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        ShowUser addUser = new ShowUser();
+        ShowUser addUser = new ShowUser(this.social);
         jDesktopPane1.add(addUser);
         addUser.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed

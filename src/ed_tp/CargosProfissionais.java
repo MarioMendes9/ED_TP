@@ -85,7 +85,7 @@ public class CargosProfissionais {
      */
     @Override
     public String toString() {
-        return "{" + "ano=" + ano + ", cargo=" + cargo + ", empresa=" + empresa + '}';
+        return "Ano=" + ano + ", cargo=" + cargo + ", empresa=" + empresa;
     }
     
     
