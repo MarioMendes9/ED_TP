@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 /**
  *  Janela para o ShortPath
  */
-public class ShortPath extends javax.swing.JInternalFrame {
+public class ShortPathEdges extends javax.swing.JInternalFrame {
 
     
     private SocialGraph social;
@@ -23,7 +23,7 @@ public class ShortPath extends javax.swing.JInternalFrame {
      * Creates new form ShortPath
      * @param social grafo
      */
-    public ShortPath(SocialGraph social) {
+    public ShortPathEdges(SocialGraph social) {
         initComponents();
         this.social=social;
     }
@@ -43,8 +43,6 @@ public class ShortPath extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         textArea1 = new java.awt.TextArea();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("ShortPath");
@@ -66,10 +64,6 @@ public class ShortPath extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("Custo:");
-
-        jTextField1.setEditable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,14 +84,7 @@ public class ShortPath extends javax.swing.JInternalFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                         .addGap(24, 24, 24))))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)))
+                .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -113,11 +100,7 @@ public class ShortPath extends javax.swing.JInternalFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addGap(82, 82, 82))
         );
 
         pack();
@@ -132,13 +115,12 @@ public class ShortPath extends javax.swing.JInternalFrame {
             String first=jTextFieldFirst.getText();
             String second=jTextFieldSecond.getText();
             String s="";
-            Iterator<User> it=social.shortPath(first, second);
+            Iterator<User> it=social.func(first, second);
             while(it.hasNext()){
                 s+=it.next().toString()+"\n";
             }
-             jTextField1.setText(""+social.getcustoShortPath(first, second));
+            
             textArea1.setText(s);
-           
         } catch (ElementNotFoundException | NonAvailablePath ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             dispose();
@@ -151,8 +133,6 @@ public class ShortPath extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldFirst;
     private javax.swing.JTextField jTextFieldSecond;
     private java.awt.TextArea textArea1;

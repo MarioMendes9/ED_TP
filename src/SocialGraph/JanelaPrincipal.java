@@ -5,6 +5,7 @@
  */
 package SocialGraph;
 
+import ArrayList.ArrayUnorderedList;
 import User.User;
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -21,14 +22,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private SocialGraph social;
     private UserInformation info;
     private User[] users;
+    private String emailUserteste;
 
     /**
      * Creates new form JanelaPrincipal
      */
     public JanelaPrincipal() {
         social = new SocialGraph();
+        emailUserteste="teste8@teste.pt";
 
-        info = new UserInformation("socialgraph.json");
+        info = new UserInformation("socialgraph_Work.json");
         try {
             info.loadInfo();
         } catch (IOException ex) {
@@ -89,6 +92,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -156,13 +161,30 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem14);
 
-        jMenuItem11.setText("print");
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/impressora_318-1793.png"))); // NOI18N
+        jMenuItem11.setText("Print");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem11);
+
+        jMenuItem15.setText("DefesaExemplo");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem15);
+
+        jMenuItem16.setText("bonificaçao1");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem16);
 
         jMenuBar1.add(jMenu1);
 
@@ -543,12 +565,67 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+         ArrayUnorderedList<String> s=social.exDefesa(emailUserteste);
+         int tot=s.size();
+         
+         ArrayUnorderedList<String> s2=new ArrayUnorderedList<>();
+         
+        Iterator<String> it=s.iterator();
+        s2.addToFront(it.next());
+        while(it.hasNext()){
+            String temp=it.next();
+            for (int i = 1; i < s.size(); i++) {
+                if(!s2.contains(temp)){
+                    s2.addToRear(temp);
+                }
+                
+            }
+        }
+        double[] medias=new double[s2.size()];
+        Iterator<String> s5=s2.iterator();
+        int k=0;
+        while(s5.hasNext()){
+            
+            String first=s5.next();
+            Iterator<String> temp=s.iterator();
+            double count=0;
+            while(temp.hasNext()){
+                if(temp.next().equals(first)){
+                    count++;
+                }
+            }
+            
+           
+            double d=count/tot;
+           
+            medias[k]=d;
+            k++;
+        }
+        Iterator<String> it3=s2.iterator();
+        for (int i = 0; i < medias.length; i++) {
+            System.out.println(it3.next()+" = "+medias[i]);
+            
+        }
+        
+        
+        
+         
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+         ShortPathEdges shortpa = new ShortPathEdges(social);
+        jDesktopPane1.add(shortpa);
+        shortpa.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
         JanelaPrincipal ja = new JanelaPrincipal();
+     //   ja.social.exDefesa("teste1@teste.pt");
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -569,6 +646,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

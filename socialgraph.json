@@ -1,1 +1,735 @@
-{"grafoSocial":[{"skills":["Java","C","Nebeans"],"idade":20,"formacaoAcademica":[{"ano":2000,"formacao":"LEI"},{"ano":1998,"formacao":"12"}],"visualizacoes":500,"nome":"teste1","id":0,"cargosProfissionais":[{"ano":2001,"cargo":"Desenvolvedor","empresa":"X"},{"ano":2000,"cargo":"Estagi�rio","empresa":"A"}],"mencoes":[{"userid":3},{"userid":4}],"email":"teste1@teste.pt","contacts":[{"userid":1},{"userid":2}]},{"skills":["Prolog","C#","Visual Studio"],"idade":20,"formacaoAcademica":[{"ano":2010,"formacao":"LSIG"},{"ano":1995,"formacao":"12"}],"visualizacoes":12,"nome":"teste2","id":1,"cargosProfissionais":[{"ano":2011,"cargo":"Administrador de base de dados","empresa":"A"},{"ano":2010,"cargo":"Estagi�rio","empresa":"Z"}],"mencoes":[{"userid":3},{"userid":4}],"email":"teste2@teste.pt","contacts":[{"userid":0},{"userid":3},{"userid":4},{"userid":2}]},{"skills":["Prolog","C#","Visual Studio"],"idade":40,"formacaoAcademica":[{"ano":1995,"formacao":"12"}],"visualizacoes":150,"nome":"teste3","id":2,"cargosProfissionais":[{"ano":2011,"cargo":"Adminstrativo","empresa":"X"},{"ano":2010,"cargo":"Estagi�rio","empresa":"X"}],"mencoes":[{"userid":0}],"email":"teste3@teste.pt","contacts":[{"userid":0},{"userid":1}]},{"skills":["C++","Angular","Javascript"],"idade":32,"formacaoAcademica":[{"ano":2011,"formacao":"MEI"}],"visualizacoes":12,"nome":"teste4","id":3,"cargosProfissionais":[{"ano":2011,"cargo":"Administrador de base de dados","empresa":"Z"},{"ano":2011,"cargo":"Developer","empresa":"A"}],"mencoes":[{"userid":1},{"userid":2}],"email":"teste4@teste.pt","contacts":[{"userid":4}]},{"skills":["Python","Typescript","Kotlin"],"idade":60,"formacaoAcademica":[{"ano":2015,"formacao":"LEI"},{"ano":2012,"formacao":"12"}],"visualizacoes":300,"nome":"teste5","id":4,"cargosProfissionais":[{"ano":2011,"cargo":"Administrador de base de dados","empresa":"Z"},{"ano":2010,"cargo":"Estagi�rio","empresa":"X"}],"mencoes":[],"email":"teste5@teste.pt","contacts":[{"userid":1},{"userid":3}]}]}
+{
+    "grafoSocial": [{
+            "id": 0,
+            "nome": "daniel",
+            "idade": 20,
+            "email": "daniel@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2004,
+                    "formacao": "LEI"
+                },
+                {
+                    "ano": 2000,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2010,
+                    "cargo": "developer",
+                    "empresa": "estg"
+                },
+                {
+                    "ano": 2005,
+                    "cargo": "estagiario",
+                    "empresa": "isep"
+                }
+            ],
+            "skills": [
+                "java",
+                "c",
+                "netbeans"
+            ],
+            "contacts": [{
+                    "userid": 1
+                },
+                {
+                    "userid": 3
+                },
+                {
+                    "userid": 6
+                },
+                {
+                    "userid": 14
+                }
+            ],
+            "mencoes": [{
+                    "userid": 4
+                },
+                {
+                    "userid": 5
+                },
+                {
+                    "userid": 13
+                },
+                {
+                    "userid": 1
+                }
+            ],
+            "visualizacoes": 8
+        },
+        {
+            "id": 1,
+            "nome": "filipe",
+            "idade": 20,
+            "email": "filipe@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "Administrador de base de dados",
+                    "empresa": "estg"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "esmae"
+                }
+            ],
+            "skills": [
+                "prolog",
+                "c#",
+                "visual studio"
+            ],
+            "contacts": [{
+                    "userid": 0
+                },
+                {
+                    "userid": 2
+                },
+                {
+                    "userid": 4
+                }
+            ],
+            "mencoes": [{
+                    "userid": 3
+                },
+                {
+                    "userid": 5
+                }
+            ],
+            "visualizacoes": 12
+        },
+        {
+            "id": 2,
+            "nome": "ribeiro",
+            "idade": 30,
+            "email": "ribeiro@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 1995,
+                    "formacao": "12"
+                }],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "Adminstrativo",
+                    "empresa": "esmae"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "isep"
+                }
+            ],
+            "skills": [
+                "prolog",
+                "c#",
+                "visual studio"
+            ],
+            "contacts": [{
+                    "userid": 1
+                },
+                {
+                    "userid": 3
+                },
+                {
+                    "userid": 9
+                }],
+            "mencoes": [{
+                    "userid": 1
+                }],
+            "visualizacoes": 37
+        },
+        {
+            "id": 3,
+            "nome": "babo",
+            "idade": 28,
+            "email": "babo@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2011,
+                    "formacao": "MEI"
+                }],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "Administrador de base de dados",
+                    "empresa": "esht"
+                },
+                {
+                    "ano": 2011,
+                    "cargo": "Developer",
+                    "empresa": "estg"
+                }
+            ],
+            "skills": [
+                "c++",
+                "python",
+                "java"
+            ],
+            "contacts": [{
+                    "userid": 0
+                },
+                {
+                    "userid": 2
+                },
+                {
+                    "userid": 10
+                }
+            ],
+            "mencoes": [{
+                    "userid": 2
+                },
+                {
+                    "userid": 14
+                },
+                {
+                    "userid": 9
+                },
+                {
+                    "userid": 8
+                }
+            ],
+            "visualizacoes": 20
+        },
+        {
+            "id": 4,
+            "nome": "mario",
+            "idade": 60,
+            "email": "mario@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 1997,
+                    "formacao": "LEI"
+                },
+                {
+                    "ano": 1992,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "Administrador de base de dados",
+                    "empresa": "esmad"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "Estagi�rio",
+                    "empresa": "eseig"
+                }
+            ],
+            "skills": [
+                "python",
+                "netbeans",
+                "prolog"
+            ],
+            "contacts": [{
+                    "userid": 1
+                },
+                {
+                    "userid": 11
+                },
+                {
+                    "userid": 13
+                }
+            ],
+            "mencoes": [
+                {
+                    "userid": 8
+                }],
+            "visualizacoes": 13
+        },
+        {
+            "id": 5,
+            "nome": "jorge",
+            "idade": 20,
+            "email": "jorge@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2003,
+                    "formacao": "LSIRC"
+                },
+                {
+                    "ano": 1998,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "tester",
+                    "empresa": "estg"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "ess"
+                }
+            ],
+            "skills": [
+                "prolog",
+                "java",
+                "c++"
+            ],
+            "contacts": [{
+                    "userid": 9
+                },
+                {
+                    "userid": 7
+                },
+                {
+                    "userid": 8
+                }
+            ],
+            "mencoes": [{
+                    "userid": 9
+                },
+                {
+                    "userid": 4
+                }
+            ],
+            "visualizacoes": 11
+        },
+        {
+            "id": 6,
+            "nome": "mendes",
+            "idade": 20,
+            "email": "mendes@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "amin",
+                    "empresa": "iscap"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "esmad"
+                }
+            ],
+            "skills": [
+                "netbeans",
+                "c#",
+                "visual studio"
+            ],
+            "contacts": [{
+                    "userid": 0
+                },
+                {
+                    "userid": 7
+                },
+                {
+                    "userid": 12
+                }
+            ],
+            "mencoes": [{
+                    "userid": 10
+                },
+                {
+                    "userid": 14
+                }
+            ],
+            "visualizacoes": 18
+        },
+        {
+            "id": 7,
+            "nome": "leite",
+            "idade": 20,
+            "email": "leite@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LEI"
+                },
+                {
+                    "ano": 2004,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "developer",
+                    "empresa": "eseig"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "ess"
+                }
+            ],
+            "skills": [
+                "python",
+                "c++",
+                "c#"
+            ],
+            "contacts": [{
+                    "userid": 6
+                },
+                {
+                    "userid": 5
+                },
+                {
+                    "userid": 12
+                }
+            ],
+            "mencoes": [{
+                    "userid": 0
+                },
+                {
+                    "userid": 9
+                }
+            ],
+            "visualizacoes": 8
+        },
+        {
+            "id": 8,
+            "nome": "pedro",
+            "idade": 20,
+            "email": "pedro@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "tester",
+                    "empresa": "esmad"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "esmae"
+                }
+            ],
+            "skills": [
+                "c",
+                "python",
+                "netbeans"
+            ],
+            "contacts": [{
+                    "userid": 5
+                },
+                {
+                    "userid": 14
+                },
+                {
+                    "userid": 10
+                }
+            ],
+            "mencoes": [{
+                    "userid": 4
+                },
+                {
+                    "userid": 8
+                }
+            ],
+            "visualizacoes": 19
+        },
+        {
+            "id": 9,
+            "nome": "ricardo",
+            "idade": 20,
+            "email": "ricardo@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "developer",
+                    "empresa": "ess"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "iscap"
+                }
+            ],
+            "skills": [
+                "c",
+                "java",
+                "netbeans"
+            ],
+            "contacts": [{
+                    "userid": 14
+                },
+                {
+                    "userid": 2
+                },
+                {
+                    "userid": 5
+                }
+            ],
+            "mencoes": [{
+                    "userid": 9
+                },
+                {
+                    "userid": 5
+                }
+            ],
+            "visualizacoes": 19
+        },
+        {
+            "id": 10,
+            "nome": "hugo",
+            "idade": 20,
+            "email": "hugo@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "tester",
+                    "empresa": "eseig"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "isep"
+                }
+            ],
+            "skills": [
+                "c#",
+                "c++",
+                "visual studio"
+            ],
+            "contacts": [{
+                    "userid": 3
+                },
+                {
+                    "userid": 8
+                },
+                {
+                    "userid": 13
+                }
+            ],
+            "mencoes": [{
+                    "userid": 12
+                },
+                {
+                    "userid": 14
+                }
+            ],
+            "visualizacoes": 9
+        },
+        {
+            "id": 11,
+            "nome": "rebeca",
+            "idade": 20,
+            "email": "rebeca@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "admin",
+                    "empresa": "eseig"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "esht"
+                }
+            ],
+            "skills": [
+                "prolog",
+                "java",
+                "netbeans"
+            ],
+            "contacts": [{
+                    "userid": 4
+                },
+                {
+                    "userid": 12
+                },
+                {
+                    "userid": 13
+                }
+            ],
+            "mencoes": [{
+                    "userid": 0
+                },
+                {
+                    "userid": 7
+                }
+            ],
+            "visualizacoes": 14
+        },
+        {
+            "id": 12,
+            "nome": "catarina",
+            "idade": 20,
+            "email": "catarina@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "Administrador de base de dados",
+                    "empresa": "isep"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "iscap"
+                }
+            ],
+            "skills": [
+                "java",
+                "prolog",
+                "python"
+            ],
+            "contacts": [{
+                    "userid": 7
+                },
+                {
+                    "userid": 6
+                },
+                {
+                    "userid": 11
+                }
+            ],
+            "mencoes": [{
+                    "userid": 3
+                },
+                {
+                    "userid": 5
+                }
+            ],
+            "visualizacoes": 18
+        },
+        {
+            "id": 13,
+            "nome": "joao",
+            "idade": 20,
+            "email": "joao@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "tester",
+                    "empresa": "ese"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "ess"
+                }
+            ],
+            "skills": [
+                "prolog",
+                "python",
+                "visual studio"
+            ],
+            "contacts": [{
+                    "userid": 10
+                },
+                {
+                    "userid": 11
+                },
+                {
+                    "userid": 4
+                }
+            ],
+            "mencoes": [{
+                    "userid": 8
+                },
+                {
+                    "userid": 9
+                }
+            ],
+            "visualizacoes": 13
+        },
+        {
+            "id": 14,
+            "nome": "alves",
+            "idade": 20,
+            "email": "alves@estg.pt",
+            "formacaoAcademica": [{
+                    "ano": 2010,
+                    "formacao": "LSIG"
+                },
+                {
+                    "ano": 1995,
+                    "formacao": "12"
+                }
+            ],
+            "cargosProfissionais": [{
+                    "ano": 2011,
+                    "cargo": "Administrador de base de dados",
+                    "empresa": "estg"
+                },
+                {
+                    "ano": 2010,
+                    "cargo": "estagiario",
+                    "empresa": "iscap"
+                }
+            ],
+            "skills": [
+                "python",
+                "c++",
+                "java"
+            ],
+            "contacts": [{
+                    "userid": 9
+                },
+                {
+                    "userid": 8
+                },
+                {
+                    "userid": 0
+                }
+            ],
+            "mencoes": [{
+                    "userid": 3
+                },
+                {
+                    "userid": 5
+                }
+            ],
+            "visualizacoes": 12
+        }
+    ]
+}

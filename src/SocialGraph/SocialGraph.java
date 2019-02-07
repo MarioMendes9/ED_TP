@@ -8,6 +8,8 @@ import Graphs.*;
 import User.CargosProfissionais;
 import User.User;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -43,7 +45,7 @@ public class SocialGraph {
      */
     public void addUserFriend(String first, String second) throws ElementNotFoundException {
         this.socialGraph.addEdge(searchUser(first), searchUser(second), (1.0 / searchUser(second).getVisualizacoes()));
-        this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(first).getVisualizacoes()));
+      //  this.socialGraph.addEdge(searchUser(second), searchUser(first), (1.0 / searchUser(first).getVisualizacoes()));
         
     }
 
@@ -74,35 +76,37 @@ public class SocialGraph {
      * @return true se for completo, false se não
      */
     public boolean completo() {
-        if (!socialGraph.isConnected()) {
-            return false;
+//        if (!socialGraph.isConnected()) {
+//            return false;
+//
+//        }
+//
+//        for (int i = 0; i < socialGraph.size(); i++) {
+//            for (int j = 0; j < socialGraph.size(); j++) {
+//                if (i != j) {
+//                    try {
+//                        Iterator it = socialGraph.iteratorShortestPathEdges(i, j);
+//                        int n = 0;
+//                        while (it.hasNext()) {
+//                            it.next();
+//                            n++;
+//
+//                        }
+//
+//                        if (n != 2) {
+//                            return false;
+//                        }
+//                    } catch (NonAvailablePath ex) {
+//                        return false;
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//        return true;
 
-        }
-
-        for (int i = 0; i < socialGraph.size(); i++) {
-            for (int j = 0; j < socialGraph.size(); j++) {
-                if (i != j) {
-                    try {
-                        Iterator it = socialGraph.iteratorShortestPathEdges(i, j);
-                        int n = 0;
-                        while (it.hasNext()) {
-                            it.next();
-                            n++;
-
-                        }
-
-                        if (n != 2) {
-                            return false;
-                        }
-                    } catch (NonAvailablePath ex) {
-                        return false;
-                    }
-
-                }
-            }
-
-        }
-        return true;
+        return socialGraph.isConnected();
     }
 
     /**
@@ -435,6 +439,58 @@ public class SocialGraph {
     public double getcustoShortPath(String emailUser1, String emailUser2) throws NonAvailablePath, ElementNotFoundException{
        return socialGraph.getPathWeight(this.shortPath(emailUser1, emailUser2));
     }
+    
+    public ArrayUnorderedList<String> exDefesa(String emailUser){
+        ArrayUnorderedList<User> connects = new ArrayUnorderedList<>();
+        ArrayUnorderedList<String> skills = new ArrayUnorderedList<>();
+        
+        Object[] users = socialGraph.getVertices();
+        try {
+            User u=this.searchUser(emailUser);
+            
+            
+             //Listas os utilizadores que tem pelo menos custo de 1 
+        for (int i = 0; i < socialGraph.size(); i++) {
+            Iterator<User> it;
+            try {
+                it = socialGraph.iteratorShortestPathEdges(u, ((User) users[i]));
+
+                int count = 0;
+                while (it.hasNext()) {
+                    count++;
+                    it.next();
+                }
+
+                if (count == 2) {
+                    connects.addToRear(((User) users[i]));
+                }
+            } catch (NonAvailablePath ex) {
+                //System.out.println(ex.getMessage());
+            }
+        }
+        
+        
+        Iterator<User> it2=connects.iterator();
+        
+        while(it2.hasNext()){
+            Iterator<String> itskills=it2.next().getSkills().iterator();
+            
+            while(itskills.hasNext()){
+                skills.addToRear(itskills.next());
+            }
+            
+        }
+            
+            
+        } catch (ElementNotFoundException ex) {
+            System.out.println("User nao encrontrado");
+        }
+        
+      
+        
+        return skills;
+        
+    }
 
     /**
      *Método que imprime a matriz
@@ -442,4 +498,19 @@ public class SocialGraph {
     public void print() {
         socialGraph.printmatriz();
     }
+    
+    
+    public Iterator<User> func(String vertex1, String vertex2) throws NonAvailablePath,ElementNotFoundException{
+     
+        User user1=this.searchUser(vertex1);
+        User user2=this.searchUser(vertex2);
+        
+           Iterator<User> it=socialGraph.iteratorShortestPathEdges(user1, user2);
+           
+           return it;
+        
+    }
+    
+    
+    
 }
